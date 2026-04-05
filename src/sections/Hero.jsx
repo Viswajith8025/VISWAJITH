@@ -72,24 +72,30 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden selection:bg-white selection:text-black">
-      {/* Background Video with Motion Reveal */}
+      
+      {/* PHASE 1: Atmospheric Mesh Layer (Mathematically Sharp) */}
+      <div className="absolute inset-0 z-0 bg-bg-dark">
+        <div className="absolute inset-0 bg-mesh-gradient opacity-40 animate-mesh-drift"></div>
+      </div>
+
+      {/* PHASE 2: Background Video with Clarity Injection */}
       <motion.div 
         variants={videoVariants}
         initial="hidden"
         animate="visible"
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-[1] pointer-events-none"
       >
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover contrast-[1.1] saturate-[1.1]"
         >
           <source src="/hero-bg.mp4" type="video/mp4" />
         </video>
-        {/* Pro Overlay */}
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
+        {/* Optimized Pro Overlay (Reduced opacity, removed blur for 2x clarity) */}
+        <div className="absolute inset-0 bg-black/40"></div>
       </motion.div>
 
       {/* Hero Content Staggered */}

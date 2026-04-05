@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 
 const FloatingParticles = ({
-  particleCount: initialParticleCount = 350,
+  particleCount: initialParticleCount = 300,
   particleSize = 2.2,
   particleOpacity = 0.6,
   glowIntensity = 10,
