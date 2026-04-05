@@ -1,0 +1,80 @@
+@import "tailwindcss";
+@import "./assets/general-sans.css";
+
+@theme {
+  --font-sans: "General Sans", "Inter", system-ui, sans-serif;
+  --font-display: "General Sans", "Space Grotesk", system-ui, sans-serif;
+  --color-accent: #A855F7;
+  --color-accent-secondary: #6366F1;
+  --color-bg-dark: #000000;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-bg-dark text-white font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-medium tracking-tight;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-6 py-20 lg:py-32;
+  }
+}
+
+@layer utilities {
+  @keyframes planet-rotate {
+    0% {
+      transform: rotate(0deg) scale(1);
+      filter: hue-rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg) scale(1.05);
+      filter: hue-rotate(20deg);
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+      filter: hue-rotate(0deg);
+    }
+  }
+
+  @keyframes orbit-float {
+    0% {
+      transform: rotate(0deg) translateX(150px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(150px) rotate(-360deg);
+    }
+  }
+
+
+  @keyframes water-wave {
+    0% { transform: translate(-50%, -65%) rotate(0deg); }
+    100% { transform: translate(-50%, -65%) rotate(360deg); }
+  }
+
+  .animate-planet {
+    animation: planet-rotate 20s linear infinite;
+  }
+
+  .animate-orbit {
+    animation: orbit-float 12s linear infinite;
+  }
+
+
+  .animate-water-wave {
+    animation: water-wave 6s linear infinite;
+  }
+}
