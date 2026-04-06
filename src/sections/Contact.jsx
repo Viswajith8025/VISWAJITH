@@ -219,6 +219,7 @@ const Contact = () => {
                   text="Send Message"
                   icon={Send}
                   primary={true}
+                  type="submit"
                   className="!px-12 w-full sm:w-auto"
                 />
               </div>
