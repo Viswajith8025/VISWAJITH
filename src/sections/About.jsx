@@ -35,14 +35,14 @@ const About = () => {
           <motion.div variants={itemVariants} className="space-y-4 md:space-y-6 text-center lg:text-left">
             <span className="text-accent text-sm font-bold uppercase tracking-widest leading-loose">About Me</span>
             <h2 className="text-4xl md:text-8xl font-display font-medium tracking-tight">
-              Design-driven <br className="hidden md:block" /> development.
+              Building the <br className="hidden md:block" /> <span className="italic">Vibe.</span>
             </h2>
           </motion.div>
 
           <motion.div variants={itemVariants} className="space-y-4 md:space-y-6 text-gray-400 text-lg md:text-xl font-medium tracking-tight max-w-xl text-center lg:text-left mx-auto lg:mx-0">
-            <p>Full Stack MERN Developer crafting high-performance, user-centric applications.</p>
-            <p>Solving complex challenges through clean, efficient, and scalable architecture.</p>
-            <p>Dedicated to modern engineering practices and AI-accelerated development.</p>
+            <p>I'm a MERN Stack developer who thrives on the perfect flow and AI-accelerated building.</p>
+            <p>I don't just write code; I craft digital experiences that feel right, focusing on clean logic and smooth interactions.</p>
+            <p>For me, it's about the art of the build—leveraging modern tools to turn ideas into reality as fast as a vibe shifts.</p>
           </motion.div>
         </div>
 
@@ -72,21 +72,10 @@ const About = () => {
             <h3 className="text-white text-xs font-bold uppercase tracking-[0.3em] opacity-50 group-hover:opacity-100 transition-opacity">Academic Background</h3>
             <div className="space-y-6 md:space-y-8 font-display">
               <div className="relative pl-6 border-l border-white/10 group-hover:border-white/30 transition-colors">
-                <div className="absolute left-[-5px] top-0 w-[9px] h-[9px] bg-white/20 rounded-full group-hover:bg-white transition-colors"></div>
-                <p className="text-base md:text-lg font-medium text-white">Bachelor of Computer Science</p>
-                <p className="text-white/60 text-[10px] md:text-xs">College of Applied Science, IHRD | 2024</p>
-              </div>
-              
-              <div className="relative pl-6 border-l border-white/10 group-hover:border-white/30 transition-colors">
-                <div className="absolute left-[-5px] top-0 w-[9px] h-[9px] bg-white/20 rounded-full group-hover:bg-white transition-colors"></div>
-                <p className="text-base md:text-lg font-medium text-white">Higher Secondary (12th)</p>
-                <p className="text-white/60 text-[10px] md:text-xs">St Joseph's Boys HS School | 2021</p>
-              </div>
-
-              <div className="relative pl-6 border-l border-white/10 group-hover:border-white/30 transition-colors">
-                <div className="absolute left-[-5px] top-0 w-[9px] h-[9px] bg-white/20 rounded-full group-hover:bg-white transition-colors"></div>
-                <p className="text-base md:text-lg font-medium text-white">High School (10th)</p>
-                <p className="text-white/60 text-[10px] md:text-xs">St Joseph's Boys HS School | 2019</p>
+                <div className="absolute left-[-5px] top-0 w-[9px] h-[9px] bg-white/20 rounded-full group-hover:bg-white transition-colors animate-pulse-slow"></div>
+                <p className="text-xl md:text-2xl font-medium text-white tracking-tight">Bachelor of Computer Science</p>
+                <p className="text-accent text-xs md:text-sm font-bold mt-1 uppercase tracking-widest">College of Applied Science, IHRD | 2021 – 2024</p>
+                <p className="mt-4 text-white/50 text-sm leading-relaxed max-w-md italic font-medium">Focused on core algorithms, software engineering principles, and distributed systems architecture.</p>
               </div>
             </div>
           </motion.div>

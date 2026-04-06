@@ -9,6 +9,10 @@ const GithubIcon = ({ size = 20 }) => (
   </svg>
 );
 
+import jananiImg from '../assets/janani.png';
+import arsenalImg from '../assets/arsenalfitness.png';
+import livekeralamImg from '../assets/livekeralam.png';
+
 const Projects = () => {
   const projectList = [
     {
@@ -35,7 +39,7 @@ const Projects = () => {
       ],
       hostedLink: "https://eventkeralamm.vercel.app/",
       githubLink: "https://github.com/Viswajith8025/LiveKeralam",
-      image: "/projects/livekeralam.png"
+      image: livekeralamImg
     },
     {
       title: "Civic Eye",
@@ -74,7 +78,7 @@ const Projects = () => {
       ],
       hostedLink: "#",
       githubLink: "#",
-      image: "/projects/janani.png"
+      image: jananiImg
     },
     {
       title: "Arsenal Fitness",
@@ -87,7 +91,7 @@ const Projects = () => {
       ],
       hostedLink: "https://arsenal-fitness.vercel.app/",
       githubLink: "https://github.com/Viswajith8025/ArsenalFitness",
-      image: "/projects/arsenal.png"
+      image: arsenalImg
     },
   ];
 

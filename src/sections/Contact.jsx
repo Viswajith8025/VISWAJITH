@@ -68,8 +68,16 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Message sent! (Demo)");
+    const { name, number, message } = formData;
+    
+    // Construct the WhatsApp message with professional formatting
+    const whatsappMessage = `Hello Viswajith! I'm *${name}* (${number}). I'm interested to connect with you.%0A%0A*Message:*%0A${message}`;
+    const whatsappUrl = `https://wa.me/917736958025?text=${whatsappMessage}`;
+    
+    // Open in a new tab
+    window.open(whatsappUrl, '_blank');
+    
+    // Optional: Reset form after redirection
     setFormData({ name: "", number: "", message: "" });
   };
 

@@ -1,10 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-/**
- * Skills - Refined Expertise section featuring a 'Minimalist Architectural' 
- * AI Workflow redesign. Optimized for elite readability and expert positioning.
- */
 const Skills = () => {
   const skillCategories = [
     {
@@ -21,7 +17,7 @@ const Skills = () => {
     }
   ];
 
-  const aiWorkflow = ["Antigravity", "Claude Code", "Gemini Flash", "Deepseek", "Claude Sonnet", "ChatGPT", "21st Dev"];
+  const aiWorkflow = ["Antigravity", "Claude Code", "Gemini Flash", "Deepseek", "Claude Sonnet", "Lovable", "Codex", "ChatGPT", "21st Dev", "Github Copilot", "Blackbox"];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -36,25 +32,25 @@ const Skills = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.6, ease: "easeOut" } 
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
     },
   };
 
   const tagVariants = {
     hidden: { opacity: 0, scale: 0.9 },
-    visible: { 
-      opacity: 1, 
-      scale: 1, 
-      transition: { duration: 0.4, ease: "easeOut" } 
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.4, ease: "easeOut" }
     },
   };
 
   return (
     <section id="skills" className="section-container border-t border-white/10 py-20 md:py-32">
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -90,21 +86,21 @@ const Skills = () => {
         </div>
 
         {/* REFINED COMPACT AI Workflow - Focused & Premium Integration */}
-        <motion.div 
+        <motion.div
           variants={itemVariants}
           className="p-8 md:p-14 bg-white/[0.01] border border-white/5 rounded-[40px] md:rounded-[60px] relative overflow-hidden group hover:border-white/10 transition-all duration-700"
         >
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-16">
             <div className="space-y-4 text-center lg:text-left max-w-sm">
-                <span className="text-accent text-[10px] font-bold uppercase tracking-[0.4em] opacity-80">Autonomous Engineering</span>
-                <h3 className="text-3xl md:text-4xl font-display font-medium tracking-tighter text-white">
-                  Propelled by <br /> <span className="italic font-light">Synthetic Logic.</span>
-                </h3>
+              <span className="text-accent text-[10px] font-bold uppercase tracking-[0.4em] opacity-80">Autonomous Engineering</span>
+              <h3 className="text-3xl md:text-4xl font-display font-medium tracking-tighter text-white">
+                Propelled by <br /> <span className="italic font-light">Synthetic Logic.</span>
+              </h3>
             </div>
-            
+
             <div className="flex flex-wrap items-center justify-center lg:justify-end gap-3 max-w-xl">
               {aiWorkflow.map((tool, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   variants={tagVariants}
                   whileHover={{ y: -4, backgroundColor: "rgba(255,255,255,0.05)" }}
@@ -112,7 +108,7 @@ const Skills = () => {
                 >
                   <div className="w-1.5 h-1.5 bg-accent/60 rounded-full shadow-[0_0_8px_rgba(168,85,247,0.4)]" />
                   <span className="text-white/60 text-[12px] font-bold uppercase tracking-widest whitespace-nowrap">
-                      {tool}
+                    {tool}
                   </span>
                 </motion.div>
               ))}
