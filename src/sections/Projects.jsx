@@ -12,6 +12,9 @@ const GithubIcon = ({ size = 20 }) => (
 import jananiImg from '../assets/janani.png';
 import arsenalImg from '../assets/arsenalfitness.png';
 import livekeralamImg from '../assets/livekeralam.png';
+import flexoraImg from '../assets/flexora.png';
+import civiceyeImg from '../assets/civiceye.png';
+import ecocraftImg from '../assets/ecocraft.png';
 
 const Projects = () => {
   const projectList = [
@@ -26,7 +29,7 @@ const Projects = () => {
       ],
       hostedLink: "#",
       githubLink: "https://github.com/Viswajith8025/Flexora",
-      image: "/projects/flexora.png"
+      image: flexoraImg
     },
     {
       title: "LiveKeralam",
@@ -52,21 +55,9 @@ const Projects = () => {
       ],
       hostedLink: "#",
       githubLink: "https://github.com/Viswajith8025/CivicEye",
-      image: "/projects/civiceye.png"
+      image: civiceyeImg
     },
-    {
-      title: "EcoCraft",
-      subtitle: "AI Waste-to-Craft Generator",
-      description: "Sustainability platform leveraging object detection to transform waste into creative DIY projects.",
-      tags: ["Hugging Face", "Object Detection"],
-      features: [
-        "Integrated 92% detection accuracy models.",
-        "Built animated 2x session length pipeline."
-      ],
-      hostedLink: "#",
-      githubLink: "https://github.com/Viswajith8025/EcoCraft",
-      image: "/projects/ecocraft.png"
-    },
+
     {
       title: "Janani",
       subtitle: "Wellness Experience",
@@ -79,6 +70,19 @@ const Projects = () => {
       hostedLink: "#",
       githubLink: "#",
       image: jananiImg
+    },
+    {
+      title: "EcoCraft",
+      subtitle: "AI Waste-to-Craft Generator",
+      description: "Sustainability platform leveraging object detection to transform waste into creative DIY projects.",
+      tags: ["Hugging Face", "Object Detection"],
+      features: [
+        "Integrated 92% detection accuracy models.",
+        "Built animated 2x session length pipeline."
+      ],
+      hostedLink: "#",
+      githubLink: "https://github.com/Viswajith8025/EcoCraft",
+      image: ecocraftImg
     },
     {
       title: "Arsenal Fitness",
@@ -107,18 +111,18 @@ const Projects = () => {
 
   const projectVariants = {
     hidden: { opacity: 0, y: 40, scale: 0.95 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      scale: 1, 
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
     },
   };
 
   return (
     <section id="projects" className="section-container border-t border-white/10 py-20 md:py-32">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-24">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -130,7 +134,7 @@ const Projects = () => {
           </h2>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -140,7 +144,7 @@ const Projects = () => {
         </motion.div>
       </div>
 
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -148,8 +152,8 @@ const Projects = () => {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-24"
       >
         {projectList.map((project, index) => (
-          <motion.div 
-            key={index} 
+          <motion.div
+            key={index}
             variants={projectVariants}
             className="group flex flex-col gap-8"
           >
