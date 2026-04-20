@@ -36,11 +36,10 @@ const InputField = ({ label, type = "text", value, onChange, isTextArea = false 
   return (
     <div className="relative w-full group">
       <label
-        className={`absolute left-4 transition-all duration-300 pointer-events-none z-10 ${
-          focused || hasValue
+        className={`absolute left-4 transition-all duration-300 pointer-events-none z-10 ${focused || hasValue
             ? "-top-2.5 text-[11px] text-accent font-bold px-2 bg-[#000000]"
             : "top-4 text-[14px] text-white/40"
-        }`}
+          }`}
       >
         {label}
       </label>
@@ -51,9 +50,8 @@ const InputField = ({ label, type = "text", value, onChange, isTextArea = false 
         onFocus={handleFocus}
         onBlur={handleBlur}
         onChange={handleChange}
-        className={`w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-4 text-white text-[15px] focus:outline-none transition-all duration-300 ${
-          focused ? "border-accent/50 bg-white/[0.08] shadow-[0_0_20px_rgba(168,85,247,0.1)]" : "hover:border-white/20"
-        } ${isTextArea ? "min-h-[120px] resize-none" : "h-[56px]"}`}
+        className={`w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-4 text-white text-[15px] focus:outline-none transition-all duration-300 ${focused ? "border-accent/50 bg-white/[0.08] shadow-[0_0_20px_rgba(168,85,247,0.1)]" : "hover:border-white/20"
+          } ${isTextArea ? "min-h-[120px] resize-none" : "h-[56px]"}`}
       />
     </div>
   );
@@ -69,14 +67,14 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, number, message } = formData;
-    
+
     // Construct the WhatsApp message with professional formatting
     const whatsappMessage = `Hello Viswajith! I'm *${name}* (${number}). I'm interested to connect with you.%0A%0A*Message:*%0A${message}`;
     const whatsappUrl = `https://wa.me/917736958025?text=${whatsappMessage}`;
-    
+
     // Open in a new tab
     window.open(whatsappUrl, '_blank');
-    
+
     // Optional: Reset form after redirection
     setFormData({ name: "", number: "", message: "" });
   };
@@ -84,12 +82,12 @@ const Contact = () => {
   const socialLinks = [
     {
       name: "LinkedIn",
-      href: "https://www.linkedin.com/in/viswajith-e-cs",
+      href: "www.linkedin.com/in/viswajithe",
       icon: LinkedinIcon
     },
     {
       name: "GitHub",
-      href: "https://github.com/viswajith-e",
+      href: "https://github.com/Viswajith8025",
       icon: GithubIcon
     }
   ];
@@ -106,16 +104,16 @@ const Contact = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.8, ease: "easeOut" } 
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" }
     },
   };
 
   return (
     <section id="contact" className="section-container border-t border-white/10 py-20 md:py-32 scroll-mt-20">
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -130,7 +128,7 @@ const Contact = () => {
               Let's build <br className="hidden md:block" /> something <span className="italic">powerful</span>.
             </h2>
           </motion.div>
-          
+
           <div className="space-y-10 text-center lg:text-left">
             <div className="flex flex-col gap-8 items-center lg:items-start">
               <motion.a
@@ -181,12 +179,12 @@ const Contact = () => {
         </div>
 
         {/* Right Column: Integrated Form */}
-        <motion.div 
+        <motion.div
           variants={itemVariants}
           className="p-8 md:p-12 bg-white/[0.02] border border-white/5 rounded-[48px] relative overflow-hidden group hover:border-accent/20 transition-all duration-700"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-          
+
           <div className="relative z-10 flex flex-col gap-10">
             <div className="space-y-3">
               <span className="text-accent text-[10px] font-bold uppercase tracking-[0.4em]">Get in touch</span>
