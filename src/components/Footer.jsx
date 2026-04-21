@@ -14,7 +14,7 @@ const Footer = () => {
 
       <div className="flex gap-12 text-[10px] font-bold uppercase tracking-[0.3em] text-white/40">
         <a href="https://github.com/Viswajith8025" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors underline-offset-8">GitHub</a>
-        <a href="https://www.linkedin.com/in/viswajith-e-cs" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors underline-offset-8">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/viswajithe" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors underline-offset-8">LinkedIn</a>
       </div>
 
       <div className="flex flex-col gap-2 items-center md:items-end text-center md:text-right">

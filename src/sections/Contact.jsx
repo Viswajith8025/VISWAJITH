@@ -82,7 +82,7 @@ const Contact = () => {
   const socialLinks = [
     {
       name: "LinkedIn",
-      href: "www.linkedin.com/in/viswajithe",
+      href: "https://www.linkedin.com/in/viswajithe",
       icon: LinkedinIcon
     },
     {
