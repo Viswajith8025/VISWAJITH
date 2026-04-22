@@ -27,7 +27,7 @@ const Projects = () => {
         "Reduced matching latency by 45%.",
         "Engineered Admin real-time moderation."
       ],
-      hostedLink: "#",
+      hostedLink: "https://flexora-wheat.vercel.app/",
       githubLink: "https://github.com/Viswajith8025/Flexora",
       image: flexoraImg
     },
