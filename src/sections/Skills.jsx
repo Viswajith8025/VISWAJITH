@@ -17,7 +17,7 @@ const Skills = () => {
     }
   ];
 
-  const aiWorkflow = ["Antigravity", "Claude Code", "Gemini Flash", "Deepseek", "Claude Sonnet", "Lovable", "Codex", "ChatGPT", "21st Dev", "Github Copilot", "Blackbox"];
+  const aiWorkflow = ["Antigravity", "Claude Code", "Gemini Flash", "n8n", "Supabase", "Deepseek", "Claude Sonnet", "Lovable", "Codex", "ChatGPT", "21st Dev", "Github Copilot", "Blackbox"];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -90,24 +90,24 @@ const Skills = () => {
           variants={itemVariants}
           className="p-8 md:p-14 bg-white/[0.01] border border-white/5 rounded-[40px] md:rounded-[60px] relative overflow-hidden group hover:border-white/10 transition-all duration-700"
         >
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-16">
-            <div className="space-y-4 text-center lg:text-left max-w-sm">
+          <div className="flex flex-col gap-8 text-center">
+            <div className="space-y-3">
               <span className="text-accent text-[10px] font-bold uppercase tracking-[0.4em] opacity-80">Autonomous Engineering</span>
               <h3 className="text-3xl md:text-4xl font-display font-medium tracking-tighter text-white">
-                Propelled by <br /> <span className="italic font-light">Synthetic Logic.</span>
+                Propelled by <span className="italic font-light">Synthetic Logic.</span>
               </h3>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center lg:justify-end gap-3 max-w-xl">
+            <div className="flex flex-wrap items-center justify-center gap-3">
               {aiWorkflow.map((tool, index) => (
                 <motion.div
                   key={index}
                   variants={tagVariants}
                   whileHover={{ y: -4, backgroundColor: "rgba(255,255,255,0.05)" }}
-                  className="px-6 py-3 bg-white/[0.02] border border-white/10 rounded-full flex items-center gap-3 transition-all duration-300 backdrop-blur-sm cursor-default"
+                  className="px-5 py-2.5 bg-white/[0.02] border border-white/10 rounded-full flex items-center gap-2.5 transition-all duration-300 backdrop-blur-sm cursor-default"
                 >
                   <div className="w-1.5 h-1.5 bg-accent/60 rounded-full shadow-[0_0_8px_rgba(168,85,247,0.4)]" />
-                  <span className="text-white/60 text-[12px] font-bold uppercase tracking-widest whitespace-nowrap">
+                  <span className="text-white/60 text-[11px] font-bold uppercase tracking-widest whitespace-nowrap">
                     {tool}
                   </span>
                 </motion.div>

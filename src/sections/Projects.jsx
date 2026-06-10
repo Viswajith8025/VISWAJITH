@@ -14,8 +14,7 @@ import arsenalImg from '../assets/arsenalfitness.png';
 import livekeralamImg from '../assets/livekeralam.png';
 import flexoraImg from '../assets/flexora.png';
 import civiceyeImg from '../assets/civiceye.png';
-import ecocraftImg from '../assets/ecocraft.png';
-
+import crmImg from '../assets/CRM.png';
 const Projects = () => {
   const projectList = [
     {
@@ -67,22 +66,22 @@ const Projects = () => {
         "100/100 Lighthouse performance score.",
         "Refined 25% lower bounce rate flows."
       ],
-      hostedLink: "#",
+      hostedLink: "https://jananilifestyle.in",
       githubLink: "#",
       image: jananiImg
     },
     {
-      title: "EcoCraft",
-      subtitle: "AI Waste-to-Craft Generator",
-      description: "Sustainability platform leveraging object detection to transform waste into creative DIY projects.",
-      tags: ["Hugging Face", "Object Detection"],
+      title: "Enterprise CRM",
+      subtitle: "Sales & Lead Management System",
+      description: "A robust B2B Customer Relationship Management platform featuring real-time lead tracking, interactive sales pipelines, and advanced analytics dashboards.",
+      tags: ["TypeScript", "Zustand", "Supabase"],
       features: [
-        "Integrated 92% detection accuracy models.",
-        "Built animated 2x session length pipeline."
+        "Architected real-time sales pipeline visualization.",
+        "Engineered role-based access control & analytics."
       ],
       hostedLink: "#",
-      githubLink: "https://github.com/Viswajith8025/EcoCraft",
-      image: ecocraftImg
+      githubLink: "https://github.com/Viswajith8025/CRM",
+      image: crmImg
     },
     {
       title: "Arsenal Fitness",

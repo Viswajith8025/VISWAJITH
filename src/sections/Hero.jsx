@@ -45,17 +45,6 @@ const LiquidName = ({ text }) => {
 
 
 const Hero = () => {
-  const [videoSrc, setVideoSrc] = useState("");
-
-  useEffect(() => {
-    // Optimization Strategy: Deferred Video Request
-    // Wait for initial assets to settle before requesting heavy video
-    const timeout = setTimeout(() => {
-        setVideoSrc("/hero-bg.mp4");
-    }, 1500);
-    return () => clearTimeout(timeout);
-  }, []);
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -84,12 +73,10 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
       
-      {/* Background Mesh Layer */}
-      <div className="absolute inset-0 z-0 bg-bg-dark">
-        <div className="absolute inset-0 bg-mesh-gradient opacity-40 animate-mesh-drift"></div>
-      </div>
+      {/* Background Base */}
+      <div className="absolute inset-0 z-0 bg-bg-dark"></div>
 
-      {/* Planet Video Component with Poster Placeholder */}
+      {/* Planet Video Component */}
       <m.div 
         variants={videoVariants}
         initial="hidden"
@@ -97,7 +84,6 @@ const Hero = () => {
         className="absolute inset-0 z-[1] pointer-events-none"
       >
         <video
-          key={videoSrc}
           autoPlay
           muted
           loop
@@ -105,7 +91,7 @@ const Hero = () => {
           poster={heroPoster}
           className="w-full h-full object-cover contrast-[1.1] saturate-[1.1]"
         >
-          {videoSrc && <source src={videoSrc} type="video/mp4" />}
+          <source src="/hero-bg.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/40"></div>
       </m.div>
