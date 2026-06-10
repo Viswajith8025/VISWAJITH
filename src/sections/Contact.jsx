@@ -64,19 +64,45 @@ const Contact = () => {
     message: ""
   });
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, number, message } = formData;
-
-    // Construct the WhatsApp message with professional formatting
-    const whatsappMessage = `Hello Viswajith! I'm *${name}* (${number}). I'm interested to connect with you.%0A%0A*Message:*%0A${message}`;
-    const whatsappUrl = `https://wa.me/917736958025?text=${whatsappMessage}`;
-
-    // Open in a new tab
-    window.open(whatsappUrl, '_blank');
-
-    // Optional: Reset form after redirection
-    setFormData({ name: "", number: "", message: "" });
+    setIsSubmitting(true);
+    
+    try {
+      const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
+      
+      if (!webhookUrl) {
+        console.warn("VITE_N8N_WEBHOOK_URL is not set in .env");
+        // Fallback to WhatsApp if no webhook is set
+        const { name, number, message } = formData;
+        const whatsappMessage = `Hello Viswajith! I'm *${name}* (${number}). I'm interested to connect with you.%0A%0A*Message:*%0A${message}`;
+        const whatsappUrl = `https://wa.me/917736958025?text=${whatsappMessage}`;
+        window.open(whatsappUrl, '_blank');
+      } else {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            phone: formData.number,
+            message: formData.message,
+            source: "portfolio"
+          }),
+        });
+        alert("Thank you! Your message has been sent successfully.");
+      }
+      
+      setFormData({ name: "", number: "", message: "" });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Failed to send message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socialLinks = [
@@ -214,10 +240,11 @@ const Contact = () => {
 
               <div className="flex justify-center lg:justify-start pt-4">
                 <SlideInButton
-                  text="Send Message"
+                  text={isSubmitting ? "Sending..." : "Send Message"}
                   icon={Send}
                   primary={true}
                   type="submit"
+                  disabled={isSubmitting}
                   className="!px-12 w-full sm:w-auto"
                 />
               </div>

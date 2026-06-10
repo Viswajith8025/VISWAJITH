@@ -116,6 +116,7 @@ const FloatingParticles = ({
 
   const drawParticles = useCallback((ctx) => {
     const canvas = ctx.canvas;
+    const isMobile = window.innerWidth < 768;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     const particles = particlesRef.current;
@@ -126,48 +127,50 @@ const FloatingParticles = ({
     // Pulse animation factor based on time
     const pulse = Math.sin(Date.now() * 0.002) * 0.2 + 0.8;
 
-    // Draw Constellation Lines
-    ctx.save();
-    for (let i = 0; i < n; i++) {
-      const p1 = particles[i];
+    // Draw Constellation Lines - DISABLE ON MOBILE FOR ULTRA SPEED
+    if (!isMobile) {
+      ctx.save();
+      for (let i = 0; i < n; i++) {
+        const p1 = particles[i];
 
-      // 1. Mouse-to-Particle Connectivity (Magnetic Effect)
-      const mdx = mouseRef.current.x - p1.x;
-      const mdy = mouseRef.current.y - p1.y;
-      const mDistSq = mdx * mdx + mdy * mdy;
-      const mouseMaxLineDistSq = 200 * 200;
+        // 1. Mouse-to-Particle Connectivity (Magnetic Effect)
+        const mdx = mouseRef.current.x - p1.x;
+        const mdy = mouseRef.current.y - p1.y;
+        const mDistSq = mdx * mdx + mdy * mdy;
+        const mouseMaxLineDistSq = 200 * 200;
 
-      if (mDistSq < mouseMaxLineDistSq) {
-        const mDistance = Math.sqrt(mDistSq);
-        const mOpacity = (1 - mDistance / 200) * 0.5;
-        ctx.strokeStyle = `rgba(168, 85, 247, ${mOpacity})`;
-        ctx.lineWidth = 1.0;
-        ctx.beginPath();
-        ctx.moveTo(mouseRef.current.x, mouseRef.current.y);
-        ctx.lineTo(p1.x, p1.y);
-        ctx.stroke();
-      }
-
-      // 2. Particle-to-Particle Continuity
-      for (let j = i + 1; j < n; j++) {
-        const p2 = particles[j];
-        const dx = p1.x - p2.x;
-        const dy = p1.y - p2.y;
-        const distSq = dx * dx + dy * dy;
-
-        if (distSq < maxLineDistSq) {
-          const distance = Math.sqrt(distSq);
-          const opacity = (1 - distance / maxLineDist) * 0.4;
-          ctx.strokeStyle = `rgba(168, 85, 247, ${opacity})`;
-          ctx.lineWidth = 0.8;
+        if (mDistSq < mouseMaxLineDistSq) {
+          const mDistance = Math.sqrt(mDistSq);
+          const mOpacity = (1 - mDistance / 200) * 0.5;
+          ctx.strokeStyle = `rgba(168, 85, 247, ${mOpacity})`;
+          ctx.lineWidth = 1.0;
           ctx.beginPath();
-          ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p2.x, p2.y);
+          ctx.moveTo(mouseRef.current.x, mouseRef.current.y);
+          ctx.lineTo(p1.x, p1.y);
           ctx.stroke();
         }
+
+        // 2. Particle-to-Particle Continuity
+        for (let j = i + 1; j < n; j++) {
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distSq = dx * dx + dy * dy;
+
+          if (distSq < maxLineDistSq) {
+            const distance = Math.sqrt(distSq);
+            const opacity = (1 - distance / maxLineDist) * 0.4;
+            ctx.strokeStyle = `rgba(168, 85, 247, ${opacity})`;
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
       }
+      ctx.restore();
     }
-    ctx.restore();
 
     // Draw Particles
     particles.forEach(particle => {
@@ -175,8 +178,8 @@ const FloatingParticles = ({
       const currentGlowMultiplier = (particle.glowMultiplier || 1) * pulse;
 
       ctx.shadowColor = particleColor;
-      // Boosted glow intensity
-      ctx.shadowBlur = (glowIntensity + 4) * currentGlowMultiplier * 3.2;
+      // REDUCED INTENSITY: shadowBlur is high CPU/GPU cost
+      ctx.shadowBlur = isMobile ? 5 : (glowIntensity + 2) * currentGlowMultiplier * 2;
       // Dynamic opacity boost
       ctx.globalAlpha = Math.min(1, particle.opacity * 1.25);
       ctx.fillStyle = particleColor;
@@ -189,6 +192,7 @@ const FloatingParticles = ({
       ctx.restore();
     });
   }, [particleColor, glowIntensity]);
+
 
   const animate = useCallback(() => {
     const canvas = canvasRef.current;

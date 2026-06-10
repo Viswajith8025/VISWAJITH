@@ -55,12 +55,41 @@ const ContactForm = () => {
     message: ""
   });
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Add success logic here
-    alert("Message sent! (Demo)");
-    setFormData({ name: "", number: "", message: "" });
+    setIsSubmitting(true);
+    
+    try {
+      const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
+      
+      if (!webhookUrl) {
+        console.warn("VITE_N8N_WEBHOOK_URL is not set in .env");
+        alert("Message sent! (Demo mode)");
+      } else {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            phone: formData.number,
+            message: formData.message,
+            source: "portfolio"
+          }),
+        });
+        alert("Thank you! Your message has been sent successfully.");
+      }
+      
+      setFormData({ name: "", number: "", message: "" });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Failed to send message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -97,13 +126,12 @@ const ContactForm = () => {
 
           <div className="flex justify-center pt-4">
             <SlideInButton
-              text="Send Message"
+              text={isSubmitting ? "Sending..." : "Send Message"}
               icon={Send}
               primary={true}
               className="!px-12"
-              href="#"
-              // Note: In a real app, this would be a type="submit" button. 
-              // For now, we'll keep it as a link-nav button as approved.
+              type="submit"
+              disabled={isSubmitting}
             />
           </div>
         </form>
