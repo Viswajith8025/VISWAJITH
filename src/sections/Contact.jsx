@@ -37,8 +37,8 @@ const InputField = ({ label, type = "text", value, onChange, isTextArea = false 
     <div className="relative w-full group">
       <label
         className={`absolute left-4 transition-all duration-300 pointer-events-none z-10 ${focused || hasValue
-            ? "-top-2.5 text-[11px] text-accent font-bold px-2 bg-[#000000]"
-            : "top-4 text-[14px] text-white/40"
+          ? "-top-2.5 text-[11px] text-accent font-bold px-2 bg-[#000000]"
+          : "top-4 text-[14px] text-white/40"
           }`}
       >
         {label}
@@ -78,19 +78,18 @@ const Contact = () => {
     setToast({ show: true, message, type });
     setTimeout(() => {
       setToast(prev => ({ ...prev, show: false }));
-    }, 3000); // 3 seconds total to allow for a 2-second read and 1-second fade
+    }, 3000);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
-      
+
       if (!webhookUrl) {
         console.warn("VITE_N8N_WEBHOOK_URL is not set in .env");
-        // Fallback to WhatsApp if no webhook is set
         const { name, number, message } = formData;
         const whatsappMessage = `Hello Viswajith! I'm *${name}* (${number}). I'm interested to connect with you.%0A%0A*Message:*%0A${message}`;
         const whatsappUrl = `https://wa.me/917736958025?text=${whatsappMessage}`;
@@ -98,9 +97,7 @@ const Contact = () => {
       } else {
         await fetch(webhookUrl, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: formData.name,
             phone: formData.number,
@@ -110,7 +107,7 @@ const Contact = () => {
         });
         showToast("Thank you! Your message has been sent successfully.");
       }
-      
+
       setFormData({ name: "", number: "", message: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -122,26 +119,24 @@ const Contact = () => {
 
   const handleStayConnectedSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!stayConnectedData.name || !stayConnectedData.email) {
       showToast("Please fill in both name and email fields.", "error");
       return;
     }
 
     setIsStayConnectedSubmitting(true);
-    
+
     try {
       const webhookUrl = import.meta.env.VITE_N8N_GMAIL_WEBHOOK_URL;
-      
+
       if (!webhookUrl) {
         console.warn("VITE_N8N_GMAIL_WEBHOOK_URL is not set in .env");
         showToast("Webhook URL is missing. Cannot send request.", "error");
       } else {
         await fetch(webhookUrl, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: stayConnectedData.name,
             email: stayConnectedData.email,
@@ -160,35 +155,18 @@ const Contact = () => {
   };
 
   const socialLinks = [
-    {
-      name: "LinkedIn",
-      href: "https://www.linkedin.com/in/viswajithe",
-      icon: LinkedinIcon
-    },
-    {
-      name: "GitHub",
-      href: "https://github.com/Viswajith8025",
-      icon: GithubIcon
-    }
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/viswajithe", icon: LinkedinIcon },
+    { name: "GitHub", href: "https://github.com/Viswajith8025", icon: GithubIcon }
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" }
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
   };
 
   return (
@@ -320,7 +298,7 @@ const Contact = () => {
           className="p-8 md:p-14 bg-white/[0.02] border border-white/5 rounded-[48px] relative overflow-hidden group hover:border-accent/20 transition-all duration-700 text-center"
         >
           <div className="absolute inset-0 bg-gradient-to-t from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-          
+
           <div className="relative z-10 flex flex-col gap-10">
             <div className="space-y-3">
               <span className="text-accent text-[10px] font-bold uppercase tracking-[0.4em]">Stay Connected</span>
@@ -331,34 +309,33 @@ const Contact = () => {
             </div>
 
             <form onSubmit={handleStayConnectedSubmit} className="flex flex-col md:flex-row gap-6 max-w-4xl mx-auto w-full items-start">
-               <div className="flex-1 w-full">
-                 <InputField
+              <div className="flex-1 w-full">
+                <InputField
                   label="Full Name"
                   value={stayConnectedData.name}
                   onChange={(e) => setStayConnectedData({ ...stayConnectedData, name: e.target.value })}
-                 />
-               </div>
-               <div className="flex-1 w-full">
-                 <InputField
+                />
+              </div>
+              <div className="flex-1 w-full">
+                <InputField
                   label="Email Address"
                   type="email"
                   value={stayConnectedData.email}
                   onChange={(e) => setStayConnectedData({ ...stayConnectedData, email: e.target.value })}
-                 />
-               </div>
-               <div className="flex shrink-0 w-full md:w-auto mt-2 md:mt-0">
-                 <SlideInButton
-                    text={isStayConnectedSubmitting ? "Sending..." : "Get My Developer Profile"}
-                    icon={Send}
-                    primary={true}
-                    type="submit"
-                    disabled={isStayConnectedSubmitting}
-                    className="!px-8 w-full !h-[56px] flex items-center justify-center"
-                 />
-               </div>
+                />
+              </div>
+              <div className="flex shrink-0 w-full md:w-auto mt-2 md:mt-0">
+                <SlideInButton
+                  text={isStayConnectedSubmitting ? "Sending..." : "Get My Developer Profile"}
+                  icon={Send}
+                  primary={true}
+                  type="submit"
+                  disabled={isStayConnectedSubmitting}
+                  className="!px-8 w-full !h-[56px] flex items-center justify-center"
+                />
+              </div>
             </form>
           </div>
-        </motion.div>
         </motion.div>
       </motion.div>
 
@@ -373,8 +350,8 @@ const Contact = () => {
             className="fixed bottom-8 right-8 z-[100] max-w-sm"
           >
             <div className={`p-4 rounded-2xl border backdrop-blur-md shadow-2xl flex items-start gap-3 ${
-              toast.type === 'error' 
-                ? 'bg-red-500/10 border-red-500/20 text-red-200' 
+              toast.type === 'error'
+                ? 'bg-red-500/10 border-red-500/20 text-red-200'
                 : 'bg-white/5 border-white/10 text-white'
             }`}>
               {toast.type === 'success' ? (
