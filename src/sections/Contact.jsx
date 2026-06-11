@@ -64,7 +64,13 @@ const Contact = () => {
     message: ""
   });
 
+  const [stayConnectedData, setStayConnectedData] = useState({
+    name: "",
+    email: ""
+  });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isStayConnectedSubmitting, setIsStayConnectedSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -102,6 +108,45 @@ const Contact = () => {
       alert("Failed to send message. Please try again later.");
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleStayConnectedSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!stayConnectedData.name || !stayConnectedData.email) {
+      alert("Please fill in both name and email fields.");
+      return;
+    }
+
+    setIsStayConnectedSubmitting(true);
+    
+    try {
+      const webhookUrl = import.meta.env.VITE_N8N_GMAIL_WEBHOOK_URL;
+      
+      if (!webhookUrl) {
+        console.warn("VITE_N8N_GMAIL_WEBHOOK_URL is not set in .env");
+        alert("Webhook URL is missing. Cannot send request.");
+      } else {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: stayConnectedData.name,
+            email: stayConnectedData.email,
+            source: "portfolio_stay_connected"
+          }),
+        });
+        alert("Thank you! Check your email. I've sent you my developer profile and project details.");
+        setStayConnectedData({ name: "", email: "" });
+      }
+    } catch (error) {
+      console.error("Error submitting Stay Connected form:", error);
+      alert("Failed to send request. Please try again later.");
+    } finally {
+      setIsStayConnectedSubmitting(false);
     }
   };
 
@@ -248,6 +293,60 @@ const Contact = () => {
                   className="!px-12 w-full sm:w-auto"
                 />
               </div>
+            </form>
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* Stay Connected Section */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="mt-20 md:mt-32 max-w-5xl mx-auto"
+      >
+        <motion.div
+          variants={itemVariants}
+          className="p-8 md:p-14 bg-white/[0.02] border border-white/5 rounded-[48px] relative overflow-hidden group hover:border-accent/20 transition-all duration-700 text-center"
+        >
+          <div className="absolute inset-0 bg-gradient-to-t from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          
+          <div className="relative z-10 flex flex-col gap-10">
+            <div className="space-y-3">
+              <span className="text-accent text-[10px] font-bold uppercase tracking-[0.4em]">Stay Connected</span>
+              <h3 className="text-3xl md:text-5xl font-display font-medium tracking-tight text-white">Get My Developer Profile.</h3>
+              <p className="text-gray-400 text-sm md:text-base max-w-xl mx-auto pt-2">
+                Enter your details below to receive a comprehensive overview of my projects, skills, and professional experience directly in your inbox.
+              </p>
+            </div>
+
+            <form onSubmit={handleStayConnectedSubmit} className="flex flex-col md:flex-row gap-6 max-w-4xl mx-auto w-full items-start">
+               <div className="flex-1 w-full">
+                 <InputField
+                  label="Full Name"
+                  value={stayConnectedData.name}
+                  onChange={(e) => setStayConnectedData({ ...stayConnectedData, name: e.target.value })}
+                 />
+               </div>
+               <div className="flex-1 w-full">
+                 <InputField
+                  label="Email Address"
+                  type="email"
+                  value={stayConnectedData.email}
+                  onChange={(e) => setStayConnectedData({ ...stayConnectedData, email: e.target.value })}
+                 />
+               </div>
+               <div className="flex shrink-0 w-full md:w-auto mt-2 md:mt-0">
+                 <SlideInButton
+                    text={isStayConnectedSubmitting ? "Sending..." : "Get My Developer Profile"}
+                    icon={Send}
+                    primary={true}
+                    type="submit"
+                    disabled={isStayConnectedSubmitting}
+                    className="!px-8 w-full !h-[56px] flex items-center justify-center"
+                 />
+               </div>
             </form>
           </div>
         </motion.div>
