@@ -80,7 +80,7 @@ const Projects = () => {
         "Engineered role-based access control & analytics."
       ],
       hostedLink: "#",
-      githubLink: "https://github.com/Viswajith8025/CRM",
+      githubLink: null,
       image: crmImg
     },
     {
@@ -207,7 +207,7 @@ const Projects = () => {
                     icon={Globe}
                   />
                 )}
-                {project.githubLink !== "#" && (
+                {project.githubLink && project.githubLink !== "#" && (
                   <SlideInButton
                     text="Source"
                     href={project.githubLink}
