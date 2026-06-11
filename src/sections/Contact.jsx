@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import SlideInButton from '../components/SlideInButton';
 
@@ -72,6 +72,15 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isStayConnectedSubmitting, setIsStayConnectedSubmitting] = useState(false);
 
+  const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
+
+  const showToast = (message, type = 'success') => {
+    setToast({ show: true, message, type });
+    setTimeout(() => {
+      setToast(prev => ({ ...prev, show: false }));
+    }, 3000); // 3 seconds total to allow for a 2-second read and 1-second fade
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -99,13 +108,13 @@ const Contact = () => {
             source: "portfolio"
           }),
         });
-        alert("Thank you! Your message has been sent successfully.");
+        showToast("Thank you! Your message has been sent successfully.");
       }
       
       setFormData({ name: "", number: "", message: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("Failed to send message. Please try again later.");
+      showToast("Failed to send message. Please try again later.", "error");
     } finally {
       setIsSubmitting(false);
     }
@@ -115,7 +124,7 @@ const Contact = () => {
     e.preventDefault();
     
     if (!stayConnectedData.name || !stayConnectedData.email) {
-      alert("Please fill in both name and email fields.");
+      showToast("Please fill in both name and email fields.", "error");
       return;
     }
 
@@ -126,7 +135,7 @@ const Contact = () => {
       
       if (!webhookUrl) {
         console.warn("VITE_N8N_GMAIL_WEBHOOK_URL is not set in .env");
-        alert("Webhook URL is missing. Cannot send request.");
+        showToast("Webhook URL is missing. Cannot send request.", "error");
       } else {
         await fetch(webhookUrl, {
           method: "POST",
@@ -139,12 +148,12 @@ const Contact = () => {
             source: "portfolio_stay_connected"
           }),
         });
-        alert("Thank you! Check your email. I've sent you my developer profile and project details.");
+        showToast("Thank you! Check your email. I've sent you my developer profile and project details.");
         setStayConnectedData({ name: "", email: "" });
       }
     } catch (error) {
       console.error("Error submitting Stay Connected form:", error);
-      alert("Failed to send request. Please try again later.");
+      showToast("Failed to send request. Please try again later.", "error");
     } finally {
       setIsStayConnectedSubmitting(false);
     }
@@ -350,7 +359,43 @@ const Contact = () => {
             </form>
           </div>
         </motion.div>
+        </motion.div>
       </motion.div>
+
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {toast.show && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="fixed bottom-8 right-8 z-[100] max-w-sm"
+          >
+            <div className={`p-4 rounded-2xl border backdrop-blur-md shadow-2xl flex items-start gap-3 ${
+              toast.type === 'error' 
+                ? 'bg-red-500/10 border-red-500/20 text-red-200' 
+                : 'bg-white/5 border-white/10 text-white'
+            }`}>
+              {toast.type === 'success' ? (
+                <div className="w-6 h-6 shrink-0 rounded-full bg-accent/20 flex items-center justify-center mt-0.5">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              ) : (
+                <div className="w-6 h-6 shrink-0 rounded-full bg-red-500/20 flex items-center justify-center mt-0.5">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </div>
+              )}
+              <p className="text-sm font-medium leading-relaxed">{toast.message}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
