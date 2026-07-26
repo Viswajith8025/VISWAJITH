@@ -144,7 +144,7 @@ const Projects = () => {
         "Secured credentials and docs across 5 RLS-guarded tables with private storage.",
         "Delivered built-in TOTP codes, vault lock, and full audit logging in a PWA.",
       ],
-      hostedLink: "https://vault-er.netlify.app/",
+      hostedLink: "https://vault-err.netlify.app/",
       githubLink: "https://github.com/Viswajith8025/Vault-er",
       image: vaultErImg,
     },

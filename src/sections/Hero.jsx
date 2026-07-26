@@ -100,8 +100,7 @@ const Hero = () => {
       <m.div 
         variants={containerVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        animate="visible"
         className="relative z-10 w-full max-w-[1200px] px-6 flex flex-col items-center pt-[100px] md:pt-[150px]"
       >
         <div className="flex flex-col items-center gap-[40px] text-center">
