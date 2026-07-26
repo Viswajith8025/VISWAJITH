@@ -97,14 +97,15 @@ const Contact = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Request failed");
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.error || "Request failed");
       }
 
       showToast("Thank you! Your message has been sent successfully.");
       setFormData({ name: "", number: "", message: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
-      showToast("Failed to send message. Please try again later.", "error");
+      showToast(error.message || "Failed to send message. Please try again later.", "error");
     } finally {
       setIsSubmitting(false);
     }

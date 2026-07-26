@@ -2,7 +2,6 @@ import React from "react";
 import { m } from "framer-motion";
 import SlideInButton from "../components/SlideInButton";
 import { Mail } from "lucide-react";
-import heroPoster from "../assets/hero.png";
 
 /**
  * LiquidName - High-fidelity text effect with optimized SEO (Single H1) 
@@ -46,28 +45,22 @@ const LiquidName = ({ text }) => {
 
 const Hero = () => {
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {},
     visible: {
-      opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.2,
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 16 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } 
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } 
     },
-  };
-
-  const videoVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 1 } },
   };
 
   return (
@@ -77,24 +70,19 @@ const Hero = () => {
       <div className="absolute inset-0 z-0 bg-bg-dark"></div>
 
       {/* Planet Video Component */}
-      <m.div 
-        variants={videoVariants}
-        initial="hidden"
-        animate="visible"
-        className="absolute inset-0 z-[1] pointer-events-none"
-      >
+      <div className="absolute inset-0 z-[1] pointer-events-none">
         <video
           autoPlay
           muted
           loop
           playsInline
-          poster={heroPoster}
-          className="w-full h-full object-cover contrast-[1.1] saturate-[1.1]"
+          preload="auto"
+          className="w-full h-full object-cover contrast-[1.1] saturate-[1.1] bg-bg-dark"
         >
           <source src="/hero-bg.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/40"></div>
-      </m.div>
+      </div>
 
       {/* Content Overlay */}
       <m.div 

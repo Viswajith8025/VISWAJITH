@@ -61,7 +61,7 @@ function telegramContactApi(env) {
           console.error("Telegram send error:", error);
           res.statusCode = 500;
           res.setHeader("Content-Type", "application/json");
-          res.end(JSON.stringify({ error: "Failed to send message" }));
+          res.end(JSON.stringify({ error: error.message || "Failed to send message" }));
         }
       });
     },

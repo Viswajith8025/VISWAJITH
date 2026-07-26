@@ -27,6 +27,6 @@ export default async function handler(req, res) {
     return res.status(200).json({ success: true });
   } catch (error) {
     console.error("Telegram send error:", error);
-    return res.status(500).json({ error: "Failed to send message" });
+    return res.status(500).json({ error: error.message || "Failed to send message" });
   }
 }
