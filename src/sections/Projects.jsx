@@ -15,6 +15,11 @@ import livekeralamImg from '../assets/livekeralam.png';
 import flexoraImg from '../assets/flexora.png';
 import civiceyeImg from '../assets/civiceye.png';
 import crmImg from '../assets/CRM.png';
+import rozanaImg from '../assets/rozanaretreats.png';
+import lendflowImg from '../assets/lendflow.png';
+import kmctTasksImg from '../assets/kmcttasks.png';
+import viswalletImg from '../assets/viswallet.png';
+import vaultErImg from '../assets/vault-er.png';
 const Projects = () => {
   const projectList = [
     {
@@ -56,7 +61,6 @@ const Projects = () => {
       githubLink: "https://github.com/Viswajith8025/CivicEye",
       image: civiceyeImg
     },
-
     {
       title: "Janani",
       subtitle: "Wellness Experience",
@@ -92,9 +96,81 @@ const Projects = () => {
         "Standardized 'Arsenal Signature' system.",
         "Engineered real-time metabolic feedback."
       ],
-      hostedLink: "https://arsenal-fitness.vercel.app/",
+      hostedLink: "https://www.arsenalfitness.in/",
       githubLink: "https://github.com/Viswajith8025/ArsenalFitness",
       image: arsenalImg
+    },
+    {
+      title: "Rozana Retreats",
+      description: "Hospitality operations platform with face-verified attendance, photo-proof housekeeping, and automated owner reporting across dual boutique resorts.",
+      tags: ["React", "Supabase", "AWS Rekognition"],
+      features: [
+        "Digitized proof-of-work for 34 rooms across 2 properties with tamper-proof RLS.",
+        "Automated daily EOD WhatsApp summaries replacing manual manager updates.",
+      ],
+      hostedLink: null,
+      githubLink: null,
+      image: rozanaImg,
+    },
+    {
+      title: "LendFlow",
+      description: "End-to-end private lending operations demo unifying origination, AI credit review, field collections, and owner oversight in one bilingual platform.",
+      tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+      features: [
+        "Built 4 role-based personas with live session chains across a ₹90L portfolio demo.",
+        "Delivered drag-and-drop 10-stage pipeline with evidence-linked AI credit review UX.",
+      ],
+      hostedLink: null,
+      githubLink: null,
+      image: lendflowImg,
+    },
+    {
+      title: "KMCT Tasks",
+      description: "Task accountability module giving KMCT management a single system of record across 9 colleges — every assignment has one owner, due date, and status.",
+      tags: ["Next.js", "SQLite", "Server Actions"],
+      features: [
+        "Replaced verbal/phone assignments with college-scoped RBAC dashboard visibility.",
+        "Shipped Kanban, multi-assign, and full task lifecycle in a focused 7-day delivery sprint.",
+      ],
+      hostedLink: null,
+      githubLink: null,
+      image: kmctTasksImg,
+    },
+    {
+      title: "VAULT-ER",
+      description: "Private personal vault unifying password credentials and identity documents in one secure, frictionless interface.",
+      tags: ["React", "Supabase", "TypeScript"],
+      features: [
+        "Secured credentials and docs across 5 RLS-guarded tables with private storage.",
+        "Delivered built-in TOTP codes, vault lock, and full audit logging in a PWA.",
+      ],
+      hostedLink: "https://vault-er.netlify.app/",
+      githubLink: "https://github.com/Viswajith8025/Vault-er",
+      image: vaultErImg,
+    },
+    {
+      title: "Viswallet",
+      description: "Offline-first personal finance platform unifying salary-cycle budgeting, transaction analytics, and wealth tracking in a calm, production-grade PWA.",
+      tags: ["Next.js", "TypeScript", "IndexedDB"],
+      features: [
+        "Built cycle-aware dashboard with daily budget pacing and financial health scoring.",
+        "Delivered budgets, bills, loans, goals, and encrypted backup across a full finance module suite.",
+      ],
+      hostedLink: "https://viswallet-sigma.vercel.app/",
+      githubLink: "https://github.com/Viswajith8025/Viswallet",
+      image: viswalletImg,
+    },
+    {
+      title: "KPN Reports Agent",
+      description: "WhatsApp-first reporting platform delivering on-demand financial and operational insights for a 250-branch parcel logistics network.",
+      tags: ["Python", "LangGraph", "WhatsApp"],
+      features: [
+        "Reduced report turnaround from 2–3 months to minutes across 18 SQL-backed reports.",
+        "Achieved 986/986 row-level reconciliation against live ledger exports.",
+      ],
+      hostedLink: null,
+      githubLink: null,
+      image: null,
     },
   ];
 
@@ -156,12 +232,12 @@ const Projects = () => {
             variants={projectVariants}
             className="group flex flex-col gap-8"
           >
-            <div className="aspect-video bg-white/5 border border-white/10 rounded-[32px] overflow-hidden relative transition-all duration-700 ease-out group-hover:border-accent/40 group-hover:shadow-[0_20px_40px_-20px_rgba(168,85,247,0.2)] group-hover:-translate-y-2">
+            <div className="bg-white/5 border border-white/10 rounded-[32px] overflow-hidden relative transition-all duration-700 ease-out group-hover:border-accent/40 group-hover:shadow-[0_20px_40px_-20px_rgba(168,85,247,0.2)] group-hover:-translate-y-2">
               {project.image ? (
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                  className="w-full h-auto block transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
                 />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center text-accent/20 font-display text-4xl font-bold uppercase tracking-tighter opacity-10">
@@ -198,7 +274,7 @@ const Projects = () => {
               </div>
 
               <div className="flex flex-wrap gap-3 pt-2">
-                {project.hostedLink !== "#" && (
+                {project.hostedLink && project.hostedLink !== "#" && (
                   <SlideInButton
                     text="Demo"
                     href={project.hostedLink}

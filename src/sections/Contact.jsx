@@ -83,31 +83,30 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.name.trim() || !formData.number.trim() || !formData.message.trim()) {
+      showToast("Please fill in all fields before sending.", "error");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.number,
+          message: formData.message,
+        }),
+      });
 
-      if (!webhookUrl) {
-        console.warn("VITE_N8N_WEBHOOK_URL is not set in .env");
-        const { name, number, message } = formData;
-        const whatsappMessage = `Hello Viswajith! I'm *${name}* (${number}). I'm interested to connect with you.%0A%0A*Message:*%0A${message}`;
-        const whatsappUrl = `https://wa.me/917736958025?text=${whatsappMessage}`;
-        window.open(whatsappUrl, '_blank');
-      } else {
-        await fetch(webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: formData.name,
-            phone: formData.number,
-            message: formData.message,
-            source: "portfolio"
-          }),
-        });
-        showToast("Thank you! Your message has been sent successfully.");
+      if (!response.ok) {
+        throw new Error("Request failed");
       }
 
+      showToast("Thank you! Your message has been sent successfully.");
       setFormData({ name: "", number: "", message: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -279,6 +278,37 @@ const Contact = () => {
                   disabled={isSubmitting}
                   className="!px-12 w-full sm:w-auto"
                 />
+              </div>
+
+              <div className="pt-8 mt-2 border-t border-white/5 space-y-5">
+                <p className="text-white/40 text-sm leading-relaxed">
+                  Usually reply within 24 hours. For something urgent, email or call directly.
+                </p>
+                <div className="flex flex-wrap gap-2.5">
+                  {["Open to work", "Freelance & full-time", "Remote / Hybrid"].map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white/45 border border-white/10 rounded-full bg-white/[0.02]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-4 text-sm">
+                  <a
+                    href="mailto:viswajith.e.cs@gmail.com"
+                    className="text-white/50 hover:text-accent transition-colors"
+                  >
+                    viswajith.e.cs@gmail.com
+                  </a>
+                  <span className="text-white/20">·</span>
+                  <a
+                    href="tel:+917736958025"
+                    className="text-white/50 hover:text-accent transition-colors"
+                  >
+                    +91 7736958025
+                  </a>
+                </div>
               </div>
             </form>
           </div>

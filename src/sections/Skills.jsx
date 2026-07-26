@@ -5,19 +5,19 @@ const Skills = () => {
   const skillCategories = [
     {
       name: "Frontend Architecture",
-      skills: ["React", "Javascript (ES6+)", "Tailwind CSS", "Framer Motion", "Responsive Design"]
+      skills: ["React", "Next.js", "TypeScript", "JavaScript (ES6+)", "Tailwind CSS", "Framer Motion", "Responsive Design"],
     },
     {
       name: "Backend & Systems",
-      skills: ["Node.js", "Express.js", "MongoDB", "PostgreSQL", "REST APIs"]
+      skills: ["Node.js", "Express.js", "Python", "MongoDB", "PostgreSQL", "Supabase", "REST APIs", "AWS"],
     },
     {
       name: "Elite Tooling",
-      skills: ["Git & GitHub", "Vite", "Postman", "AI-Assisted Workflows", "Figma"]
-    }
+      skills: ["Git & GitHub", "Vite", "Postman", "AI-Assisted Workflows", "Figma", "VS Code", "Cursor","Antigravity"],
+    },
   ];
 
-  const aiWorkflow = ["Antigravity", "Claude Code", "Gemini Flash", "n8n", "Supabase", "Deepseek", "Claude Sonnet", "Lovable", "Codex", "ChatGPT", "21st Dev", "Github Copilot", "Blackbox"];
+  const aiWorkflow = ["Claude", "Openrouter", "n8n", "LangGraph", "DeepSeek", "LangChain", "Lovable", "Codex", "ChatGPT", "21st Dev", "GitHub Copilot", "Blackbox"];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -35,7 +35,7 @@ const Skills = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   };
 
@@ -44,7 +44,7 @@ const Skills = () => {
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.4, ease: "easeOut" }
+      transition: { duration: 0.4, ease: "easeOut" },
     },
   };
 
@@ -61,7 +61,9 @@ const Skills = () => {
           <motion.div variants={itemVariants} className="lg:w-1/3 space-y-6 md:space-y-8 text-center lg:text-left">
             <div className="space-y-4 md:space-y-6">
               <span className="text-secondary text-sm font-bold uppercase tracking-widest leading-loose">Expertise</span>
-              <h2 className="text-4xl md:text-7xl font-display font-medium tracking-tight leading-[1.1]">Technical <br className="hidden md:block" /> Stack.</h2>
+              <h2 className="text-4xl md:text-7xl font-display font-medium tracking-tight leading-[1.1]">
+                Technical <br className="hidden md:block" /> Stack.
+              </h2>
             </div>
             <p className="text-gray-400 text-lg font-medium tracking-tight max-w-sm mx-auto lg:mx-0">
               Fusing core engineering fundamentals with advanced AI-powered development.
@@ -85,7 +87,6 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* REFINED COMPACT AI Workflow - Focused & Premium Integration */}
         <motion.div
           variants={itemVariants}
           className="p-8 md:p-14 bg-white/[0.01] border border-white/5 rounded-[40px] md:rounded-[60px] relative overflow-hidden group hover:border-white/10 transition-all duration-700"

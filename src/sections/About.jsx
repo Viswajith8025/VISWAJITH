@@ -44,6 +44,19 @@ const About = () => {
             <p>I don't just write code; I craft digital experiences that feel right, focusing on clean logic and smooth interactions.</p>
             <p>For me, it's about the art of the build—leveraging modern tools to turn ideas into reality as fast as a vibe shifts.</p>
           </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="p-6 md:p-8 bg-white/5 border border-white/10 rounded-[32px] space-y-6 md:space-y-8 group hover:border-accent/40 hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(168,85,247,0.15)] transition-all duration-500"
+          >
+            <h3 className="text-white text-xs font-bold uppercase tracking-[0.3em] opacity-50 group-hover:opacity-100 transition-opacity">Academic Background</h3>
+            <div className="relative pl-6 border-l border-white/10 group-hover:border-white/30 transition-colors font-display">
+              <div className="absolute left-[-5px] top-0 w-[9px] h-[9px] bg-white/20 rounded-full group-hover:bg-white transition-colors animate-pulse-slow"></div>
+              <p className="text-xl md:text-2xl font-medium text-white tracking-tight">Bachelor of Computer Science</p>
+              <p className="text-accent text-xs md:text-sm font-bold mt-1 uppercase tracking-widest">College of Applied Science, IHRD | 2021 – 2024</p>
+              <p className="mt-4 text-white/50 text-sm leading-relaxed max-w-md italic font-medium">Focused on core algorithms, software engineering principles, and distributed systems architecture.</p>
+            </div>
+          </motion.div>
         </div>
 
         <div className="space-y-10 md:space-y-12 lg:pt-24">
@@ -51,16 +64,15 @@ const About = () => {
             variants={itemVariants}
             className="p-6 md:p-8 bg-white/5 border border-white/10 rounded-[32px] space-y-6 md:space-y-8 group hover:border-accent/40 hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(168,85,247,0.15)] transition-all duration-500"
           >
-            <h3 className="text-white text-xs font-bold uppercase tracking-[0.3em] opacity-50 group-hover:opacity-100 transition-opacity">Professional Experience</h3>
-            <div className="space-y-8">
-              <div className="relative pl-6 border-l border-accent/30 group-hover:border-accent transition-colors">
-                <div className="absolute left-[-5px] top-0 w-[9px] h-[9px] bg-accent rounded-full shadow-[0_0_10px_#A855F7] group-hover:scale-125 transition-transform"></div>
-                <p className="text-lg md:text-xl font-display font-medium text-white">MERN Stack Intern — Softroniics</p>
-                <p className="text-accent text-xs md:text-sm font-bold mt-1">06/2024 – 02/2025 | Calicut, India</p>
-                <div className="mt-4 space-y-3 text-white/60 text-sm leading-relaxed">
-                  <p>• Collaborated with senior developers on full-stack feature implementations and critical bug fixes for production-grade MERN applications.</p>
-                  <p>• Engineered scalable front-end components and data schemas using React, Tailwind CSS, MongoDB, and SQL.</p>
-                </div>
+            <h3 className="text-white text-xs font-bold uppercase tracking-[0.3em] opacity-50 group-hover:opacity-100 transition-opacity">Emilda&Co</h3>
+            <div className="relative pl-6 border-l border-accent/30 group-hover:border-accent transition-colors">
+              <div className="absolute left-[-5px] top-0 w-[9px] h-[9px] bg-accent rounded-full shadow-[0_0_10px_#A855F7] group-hover:scale-125 transition-transform"></div>
+              <p className="text-lg md:text-xl font-display font-medium text-white">Operational Consultant</p>
+              <p className="text-accent text-xs md:text-sm font-bold mt-1">06/2025 – Present</p>
+              <div className="mt-4 space-y-3 text-white/60 text-sm leading-relaxed">
+                <p>• Building AI automations and agentic workflows that turn manual ops into on-demand, production-ready systems.</p>
+                <p>• Shipping full-stack software across hospitality, lending, education, and logistics — from WhatsApp agents to role-based dashboards.</p>
+                <p>• Owning end-to-end delivery: architecture, engineering, integrations, and deployment for client-facing platforms.</p>
               </div>
             </div>
           </motion.div>
@@ -69,13 +81,14 @@ const About = () => {
             variants={itemVariants}
             className="p-6 md:p-8 bg-white/5 border border-white/10 rounded-[32px] space-y-6 md:space-y-8 group hover:border-accent/40 hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(168,85,247,0.15)] transition-all duration-500"
           >
-            <h3 className="text-white text-xs font-bold uppercase tracking-[0.3em] opacity-50 group-hover:opacity-100 transition-opacity">Academic Background</h3>
-            <div className="space-y-6 md:space-y-8 font-display">
-              <div className="relative pl-6 border-l border-white/10 group-hover:border-white/30 transition-colors">
-                <div className="absolute left-[-5px] top-0 w-[9px] h-[9px] bg-white/20 rounded-full group-hover:bg-white transition-colors animate-pulse-slow"></div>
-                <p className="text-xl md:text-2xl font-medium text-white tracking-tight">Bachelor of Computer Science</p>
-                <p className="text-accent text-xs md:text-sm font-bold mt-1 uppercase tracking-widest">College of Applied Science, IHRD | 2021 – 2024</p>
-                <p className="mt-4 text-white/50 text-sm leading-relaxed max-w-md italic font-medium">Focused on core algorithms, software engineering principles, and distributed systems architecture.</p>
+            <h3 className="text-white text-xs font-bold uppercase tracking-[0.3em] opacity-50 group-hover:opacity-100 transition-opacity">Softroniics</h3>
+            <div className="relative pl-6 border-l border-accent/30 group-hover:border-accent transition-colors">
+              <div className="absolute left-[-5px] top-0 w-[9px] h-[9px] bg-accent rounded-full shadow-[0_0_10px_#A855F7] group-hover:scale-125 transition-transform"></div>
+              <p className="text-lg md:text-xl font-display font-medium text-white">MERN Stack Intern</p>
+              <p className="text-accent text-xs md:text-sm font-bold mt-1">06/2024 – 02/2025 | Calicut, India</p>
+              <div className="mt-4 space-y-3 text-white/60 text-sm leading-relaxed">
+                <p>• Collaborated with senior developers on full-stack feature implementations and critical bug fixes for production-grade MERN applications.</p>
+                <p>• Engineered scalable front-end components and data schemas using React, Tailwind CSS, MongoDB, and SQL.</p>
               </div>
             </div>
           </motion.div>
