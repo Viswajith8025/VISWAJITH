@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { m } from "framer-motion";
 import SlideInButton from "../components/SlideInButton";
 import { Mail } from "lucide-react";

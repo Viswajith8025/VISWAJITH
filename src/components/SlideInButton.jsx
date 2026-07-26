@@ -12,6 +12,7 @@ const SlideInButton = ({
   onClick,
   type = "button",
   primary = false,
+  download,
   className = ""
 }) => {
   const isExternal = href?.startsWith("http") || href?.startsWith("mailto");
@@ -58,6 +59,7 @@ const SlideInButton = ({
         href={href}
         target={isExternal ? "_blank" : undefined}
         rel={isExternal ? "noopener noreferrer" : undefined}
+        download={download}
         onClick={onClick}
         className={commonClasses}
       >
