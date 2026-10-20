@@ -25,11 +25,11 @@ const Projects = () => {
     {
       title: "Flexora",
       subtitle: "One-Day Job Platform",
-      description: "High-performance marketplace connecting job providers with seekers for short-term opportunities.",
-      tags: ["React", "Node.js", "MongoDB"],
+      description: "Same-day local staffing marketplace where district-aware job matching meets live Socket.io status and Razorpay checkout before a shift starts.",
+      tags: ["Socket.io", "Razorpay", "MongoDB"],
       features: [
-        "Reduced matching latency by 45%.",
-        "Engineered Admin real-time moderation."
+        "Region/district regex matching so seekers see jobs near them, not a national dump.",
+        "Socket.io live job status plus Razorpay order create → signature verify on pay.",
       ],
       hostedLink: "https://flexora-wheat.vercel.app/",
       githubLink: "https://github.com/Viswajith8025/Flexora",
@@ -38,11 +38,11 @@ const Projects = () => {
     {
       title: "LiveKeralam",
       subtitle: "Discovery Platform",
-      description: "Centralized MERN-based discovery engine for cultural events and tourism across Kerala.",
-      tags: ["MERN Stack", "Express.js", "Scalable UI"],
+      description: "Kerala heritage discovery with SoulSync scoring — vibe, district, and season weighted into a personal festival blueprint, then live event chat.",
+      tags: ["SoulSync", "Socket.io", "MERN"],
       features: [
-        "Achieved 35% user engagement increase.",
-        "Architected multi-actor processing system."
+        "Weighted match engine (vibe keywords, district proximity, season) in SoulSync.",
+        "JWT-auth Socket.io rooms per event plus admin support/event moderation inbox.",
       ],
       hostedLink: "https://eventkeralamm.vercel.app/",
       githubLink: "https://github.com/Viswajith8025/LiveKeralam",
@@ -51,11 +51,11 @@ const Projects = () => {
     {
       title: "Civic Eye",
       subtitle: "Citizen Complaint Reporting",
-      description: "Transparency platform for reporting violations with AI-validated media and 20% rewards.",
-      tags: ["Node.js", "PostgreSQL", "AI Validation"],
+      description: "Civic complaint PWA that clusters nearby reports on a map, AI-summarizes cases for staff, and notifies citizens on status and rewards.",
+      tags: ["MongoDB Geo", "OpenAI", "PWA"],
       features: [
-        "Verified 300+ reports with AI media.",
-        "Automated 100% accurate incentive logic."
+        "Mongo `$near` geo queries (Haversine fallback) so nearby complaints cluster on Leaflet.",
+        "OpenAI municipal summaries with rule-based fallback when no API key is set.",
       ],
       hostedLink: "#",
       githubLink: "https://github.com/Viswajith8025/CivicEye",
@@ -64,11 +64,11 @@ const Projects = () => {
     {
       title: "Janani",
       subtitle: "Wellness Experience",
-      description: "Nature-inspired digital experience for luxury wellness resort, focusing on Ayurvedic storytelling.",
-      tags: ["React", "UI/UX", "Figma"],
+      description: "Wayanad Ayurveda retreat with real booking refs and Razorpay checkout — not a brochure-only site.",
+      tags: ["Razorpay", "Supabase", "React"],
       features: [
-        "100/100 Lighthouse performance score.",
-        "Refined 25% lower bounce rate flows."
+        "`JAN-` booking references into Supabase with Razorpay order create + signature verify.",
+        "Rate-limited booking/auth routes and Zod-validated payment schemas.",
       ],
       hostedLink: "https://jananilifestyle.in",
       githubLink: "#",
@@ -77,11 +77,11 @@ const Projects = () => {
     {
       title: "Enterprise CRM",
       subtitle: "Sales & Lead Management System",
-      description: "A robust B2B Customer Relationship Management platform featuring real-time lead tracking, interactive sales pipelines, and advanced analytics dashboards.",
-      tags: ["TypeScript", "Zustand", "Supabase"],
+      description: "Agency ERP that syncs eSSL biometric punches over SOAP and keeps writes race-safe with optimistic concurrency — plus GST billing.",
+      tags: ["eSSL SOAP", "Supabase", "OCC"],
       features: [
-        "Architected real-time sales pipeline visualization.",
-        "Engineered role-based access control & analytics."
+        "Local sync agent pulls `GetTransactionsLog` from eSSL devices into attendance.",
+        "Version-column OCC + immutable audit logs so concurrent edits don’t silently clobber.",
       ],
       hostedLink: "#",
       githubLink: null,
@@ -90,11 +90,11 @@ const Projects = () => {
     {
       title: "Arsenal Fitness",
       subtitle: "Premium Fitness Platform",
-      description: "High-performance fitness platform with aggressive brand aesthetics and real-time calculators.",
-      tags: ["Performance UI", "React", "Tailwind"],
+      description: "Gym brand site with an on-page AI coach scoped to gym knowledge, and join leads delivered over Telegram.",
+      tags: ["Groq", "Telegram", "React"],
       features: [
-        "Standardized 'Arsenal Signature' system.",
-        "Engineered real-time metabolic feedback."
+        "Kiran coach: Groq → OpenAI → Gemini provider fallback over a fixed gym knowledge base.",
+        "Serverless join API posts leads to Telegram when the bot token is configured.",
       ],
       hostedLink: "https://www.arsenalfitness.in/",
       githubLink: "https://github.com/Viswajith8025/ArsenalFitness",
@@ -102,23 +102,23 @@ const Projects = () => {
     },
     {
       title: "Rozana Retreats",
-      description: "Hospitality operations platform with face-verified attendance, photo-proof housekeeping, and automated owner reporting across dual boutique resorts.",
-      tags: ["React", "Supabase", "AWS Rekognition"],
+      description: "Two-resort ops OS where staff punch with AWS Rekognition face match, housekeeping needs photo proof, and owners get Baileys EOD WhatsApp digests.",
+      tags: ["Rekognition", "Supabase", "Baileys"],
       features: [
-        "Digitized proof-of-work for 34 rooms across 2 properties with tamper-proof RLS.",
-        "Automated daily EOD WhatsApp summaries replacing manual manager updates.",
+        "Face punch at ~95% match threshold with duplicate-face collapse across enrolments.",
+        "6 PM IST Baileys EOD digests: attendance, leave, and unfinished rooms — no Meta template lag.",
       ],
       hostedLink: null,
       githubLink: null,
       image: rozanaImg,
     },
     {
-      title: "LendFlow",
-      description: "End-to-end private lending operations demo unifying origination, AI credit review, field collections, and owner oversight in one bilingual platform.",
-      tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+      title: "7 Horses",
+      description: "Tamil Nadu microfinance OS — paise-exact loan schedules, field cash routes with once-only handover, and bilingual EN/Tamil desks.",
+      tags: ["Loan engine", "Supabase", "i18n"],
       features: [
-        "Built 4 role-based personas with live session chains across a ₹90L portfolio demo.",
-        "Delivered drag-and-drop 10-stage pipeline with evidence-linked AI credit review UX.",
+        "Installment math in paise with IST day boundaries — Recovery/Advance derived from schedule state.",
+        "Field stop list → cash/UPI collect → single cash handover to accountant (RLS-hardened).",
       ],
       hostedLink: null,
       githubLink: null,
@@ -126,11 +126,11 @@ const Projects = () => {
     },
     {
       title: "KMCT Tasks",
-      description: "Task accountability module giving KMCT management a single system of record across 9 colleges — every assignment has one owner, due date, and status.",
-      tags: ["Next.js", "SQLite", "Server Actions"],
+      description: "Accountability module inside KMCT Nucleus — assignment hierarchy is enforced in Postgres, not just the UI, across college roles.",
+      tags: ["Supabase", "RLS", "React"],
       features: [
-        "Replaced verbal/phone assignments with college-scoped RBAC dashboard visibility.",
-        "Shipped Kanban, multi-assign, and full task lifecycle in a focused 7-day delivery sprint.",
+        "DB + workflow forbid coordinators assigning “up”; owners can assign across colleges.",
+        "Daily login summary modal: new / overdue / due-soon (IST), dismiss once per day.",
       ],
       hostedLink: null,
       githubLink: null,
@@ -138,11 +138,11 @@ const Projects = () => {
     },
     {
       title: "VAULT-ER",
-      description: "Private personal vault unifying password credentials and identity documents in one secure, frictionless interface.",
-      tags: ["React", "Supabase", "TypeScript"],
+      description: "PWA credentials vault with per-item TOTP codes, walk-away vault lock, and release gates that live-test RLS isolation between accounts.",
+      tags: ["TOTP", "RLS", "PWA"],
       features: [
-        "Secured credentials and docs across 5 RLS-guarded tables with private storage.",
-        "Delivered built-in TOTP codes, vault lock, and full audit logging in a PWA.",
+        "Idle/manual lock wipes in-memory vault; clipboard auto-clear after copy.",
+        "`npm run gate` proves user B cannot read user A’s vault, docs, or audit log.",
       ],
       hostedLink: "https://vault-err.netlify.app/",
       githubLink: "https://github.com/Viswajith8025/Vault-er",
@@ -150,11 +150,11 @@ const Projects = () => {
     },
     {
       title: "Viswallet",
-      description: "Offline-first personal finance platform unifying salary-cycle budgeting, transaction analytics, and wealth tracking in a calm, production-grade PWA.",
-      tags: ["Next.js", "TypeScript", "IndexedDB"],
+      description: "Offline-first finance PWA — integer paise in Dexie, salary-day cycles, and passphrase-wrapped encrypted backups.",
+      tags: ["Dexie", "Paise", "AES backup"],
       features: [
-        "Built cycle-aware dashboard with daily budget pacing and financial health scoring.",
-        "Delivered budgets, bills, loans, goals, and encrypted backup across a full finance module suite.",
+        "Salary-day month keys drive pacing instead of calendar-month assumptions.",
+        "Export/import as encrypted `.vwbackup` with passphrase — not plain JSON by default.",
       ],
       hostedLink: "https://viswallet-sigma.vercel.app/",
       githubLink: "https://github.com/Viswajith8025/Viswallet",
@@ -162,11 +162,59 @@ const Projects = () => {
     },
     {
       title: "KPN Reports Agent",
-      description: "WhatsApp-first reporting platform delivering on-demand financial and operational insights for a 250-branch parcel logistics network.",
-      tags: ["Python", "LangGraph", "WhatsApp"],
+      description: "WhatsApp BI agent for 200+ branches — cron SQL digests with no LLM, plus a LangGraph lane that only calls whitelisted parameterized tools.",
+      tags: ["LangGraph", "SQL", "Baileys"],
       features: [
-        "Reduced report turnaround from 2–3 months to minutes across 18 SQL-backed reports.",
-        "Achieved 986/986 row-level reconciliation against live ledger exports.",
+        "Lane A: reviewed SQL → reconcile validation → PDF/Excel via Baileys (figures never from LLM).",
+        "Lane B: layout JSON editable; every stated number must come back from a SQL tool.",
+      ],
+      hostedLink: null,
+      githubLink: null,
+      image: null,
+    },
+    {
+      title: "KPN Sales Pipeline",
+      description: "Parcel-software sales kanban with MD approval gates and renewal periods — illegal stage drags are blocked in the UI and RLS.",
+      tags: ["MD gates", "Kanban", "Supabase"],
+      features: [
+        "Pipeline → pending_md → converted/renewal/lost, including MD counter/renegotiate.",
+        "Mandatory next-step on board moves; salesperson portal vs admin approval strip.",
+      ],
+      hostedLink: null,
+      githubLink: null,
+      image: null,
+    },
+    {
+      title: "KPN Fuel",
+      description: "Station OS with on-device face anti-spoof for shift open/close, live BOS pump sync, and a digest-only WhatsApp bridge.",
+      tags: ["ONNX Face", "BOS Sync", "PWA"],
+      features: [
+        "YuNet detect + SFace embed + MiniFASNet anti-spoof — scores only, no face DB on the bunk PC.",
+        "Punch-gated shift sessions plus 20+ BOS payload kinds upserted into Supabase.",
+      ],
+      hostedLink: null,
+      githubLink: null,
+      image: null,
+    },
+    {
+      title: "OpsVisor",
+      description: "Field-sales stack where visits must start within 50 m of the shop, GPS trails ride the open sale cycle, and offline negotiate/complete share one session id.",
+      tags: ["Flutter", "GPS FGS", "Supabase"],
+      features: [
+        "VisitVerification gates (50 m start / 30 m accuracy) with fraud flags on the session.",
+        "Android foreground location bounded to the sale cycle; offline GPS queue keeps timestamps.",
+      ],
+      hostedLink: null,
+      githubLink: null,
+      image: null,
+    },
+    {
+      title: "Siddhant Fashion",
+      description: "LAN-only textile factory PWA — phones work offline; the factory PC (SQLite WAL) is the only source of truth over Tailscale.",
+      tags: ["Offline sync", "SQLite", "Paise"],
+      features: [
+        "Idempotent `sync_ops` with applied / conflict / held recovery on the outbox.",
+        "Money and qty as integers (paise, cm, mg); two factories with outside-role lockdown.",
       ],
       hostedLink: null,
       githubLink: null,
