@@ -121,7 +121,7 @@ const Hero = () => {
               variants={itemVariants}
               className="max-w-[640px] text-[16px] md:text-[19px] font-medium text-white/50 leading-relaxed tracking-tight"
             >
-              Building clean, high-fidelity digital products with a focus on AI-accelerated flow and the MERN stack.
+              Forward deployed engineer shipping AI agents, business automation, and full-stack ops software with React, TypeScript, Python, and Supabase.
             </m.p>
           </div>
 

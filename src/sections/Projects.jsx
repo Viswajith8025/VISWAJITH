@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Globe } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Expand, Globe, X } from 'lucide-react';
 import SlideInButton from '../components/SlideInButton';
 
 const GithubIcon = ({ size = 20 }) => (
@@ -22,7 +22,28 @@ import viswalletImg from '../assets/viswallet.png';
 import vaultErImg from '../assets/vault-er.png';
 import opsvisorImg from '../assets/opsvisor.jpeg';
 import kpnFuelImg from '../assets/kpnfuel.jpeg';
+import factoryAppImg from '../assets/factory-app.jpeg';
+import reportAgentImg from '../assets/report-agent.jpeg';
+import salesPipelineImg from '../assets/salespipeline.jpeg';
 const Projects = () => {
+  const [lightbox, setLightbox] = useState(null);
+
+  useEffect(() => {
+    if (!lightbox) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setLightbox(null);
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [lightbox]);
+
   const projectList = [
     {
       title: "Flexora",
@@ -172,7 +193,9 @@ const Projects = () => {
       ],
       hostedLink: null,
       githubLink: null,
-      image: null,
+      image: reportAgentImg,
+      imageLayout: "mobile",
+      disableLightbox: true,
     },
     {
       title: "Corporate Sales Pipeline",
@@ -184,7 +207,7 @@ const Projects = () => {
       ],
       hostedLink: null,
       githubLink: null,
-      image: null,
+      image: salesPipelineImg,
     },
     {
       title: "Fuel Station Management System",
@@ -220,7 +243,7 @@ const Projects = () => {
       ],
       hostedLink: null,
       githubLink: null,
-      image: null,
+      image: factoryAppImg,
     },
   ];
 
@@ -245,8 +268,8 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="section-container border-t border-white/10 py-20 md:py-32">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-24">
+    <section id="projects" className="section-container border-t border-white/10 py-16 md:py-24">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 md:mb-16">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -274,30 +297,77 @@ const Projects = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-24"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14 md:gap-y-16 items-start"
       >
-        {projectList.map((project, index) => (
+        {projectList.map((project, index) => {
+          const canLightbox = Boolean(project.image) && !project.disableLightbox;
+
+          return (
           <motion.div
             key={index}
             variants={projectVariants}
-            className="group flex flex-col gap-8"
+            className="group flex flex-col gap-5 h-full"
           >
-            <div className="bg-white/5 border border-white/10 rounded-[32px] overflow-hidden relative transition-all duration-700 ease-out group-hover:border-accent/40 group-hover:shadow-[0_20px_40px_-20px_rgba(168,85,247,0.2)] group-hover:-translate-y-2">
+            <div
+              className={`bg-white/5 border border-white/10 rounded-[32px] overflow-hidden relative transition-all duration-700 ease-out group-hover:border-accent/40 group-hover:shadow-[0_20px_40px_-20px_rgba(168,85,247,0.2)] group-hover:-translate-y-2 ${
+                canLightbox ? 'cursor-zoom-in' : project.image ? '' : 'min-h-[200px]'
+              }`}
+              role={canLightbox ? 'button' : undefined}
+              tabIndex={canLightbox ? 0 : undefined}
+              aria-label={canLightbox ? `View ${project.title} screenshot fullscreen` : undefined}
+              onClick={() => {
+                if (!canLightbox) return;
+                setLightbox({
+                  src: project.image,
+                  title: project.title,
+                  layout: project.imageLayout || 'desktop',
+                });
+              }}
+              onKeyDown={(event) => {
+                if (!canLightbox) return;
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  setLightbox({
+                    src: project.image,
+                    title: project.title,
+                    layout: project.imageLayout || 'desktop',
+                  });
+                }
+              }}
+            >
               {project.image ? (
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-auto block transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
-                />
+                project.imageLayout === 'mobile' ? (
+                  <div className="w-full aspect-[16/10] flex items-center justify-center bg-[#0a0a0a] px-5 py-4">
+                    <div className="relative h-[88%] max-h-[240px] aspect-[9/19.5] rounded-[1.2rem] border border-white/15 bg-black shadow-[0_16px_40px_-20px_rgba(0,0,0,0.9)] overflow-hidden transition-transform duration-1000 ease-out group-hover:scale-[1.02]">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="h-full w-full object-cover object-top"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-auto block transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
+                  />
+                )
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center text-accent/20 font-display text-4xl font-bold uppercase tracking-tighter opacity-10">
                   {project.title}
                 </div>
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none"></div>
+              {canLightbox && (
+                <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/50 border border-white/10 text-white/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <Expand size={12} />
+                  <span className="text-[9px] font-bold uppercase tracking-widest">Fullscreen</span>
+                </div>
+              )}
             </div>
 
-            <div className="flex flex-col gap-6 px-1 transition-transform duration-500 group-hover:translate-x-1">
+            <div className="flex flex-col gap-4 px-1 transition-transform duration-500 group-hover:translate-x-1">
               <div className="space-y-3">
                 <div className="flex flex-wrap gap-2">
                   {project.tags.slice(0, 3).map((tag, i) => (
@@ -344,8 +414,62 @@ const Projects = () => {
               </div>
             </div>
           </motion.div>
-        ))}
+          );
+        })}
       </motion.div>
+
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center p-3 md:p-8"
+            onClick={() => setLightbox(null)}
+          >
+            <div className="absolute inset-0 bg-black/90 backdrop-blur-md" />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 16 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+              className="relative z-10 w-full max-w-6xl max-h-[92vh] flex flex-col"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="flex items-center justify-between gap-4 px-1 pb-4">
+                <p className="text-sm font-bold uppercase tracking-[0.2em] text-white/70 truncate">
+                  {lightbox.title}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setLightbox(null)}
+                  aria-label="Close fullscreen image"
+                  className="p-2 rounded-full border border-white/10 text-white/60 hover:text-white hover:border-accent/40 transition-colors shrink-0"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+
+              <div
+                className={`rounded-[24px] md:rounded-[32px] overflow-hidden border border-white/10 bg-black/40 shadow-2xl ${
+                  lightbox.layout === 'mobile' ? 'mx-auto w-fit max-w-full' : ''
+                }`}
+              >
+                <img
+                  src={lightbox.src}
+                  alt={lightbox.title}
+                  className={
+                    lightbox.layout === 'mobile'
+                      ? 'max-h-[82vh] w-auto max-w-[min(100%,420px)] object-contain bg-black block mx-auto'
+                      : 'w-full max-h-[82vh] object-contain bg-black'
+                  }
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
