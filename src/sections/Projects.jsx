@@ -44,84 +44,57 @@ const Projects = () => {
     };
   }, [lightbox]);
 
+  // Ordered by uniqueness / interview signal (hardest systems first, marketing sites last).
   const projectList = [
     {
-      title: "Flexora",
-      subtitle: "One-Day Job Platform",
-      description: "Same-day local staffing marketplace where district-aware job matching meets live Socket.io status and Razorpay checkout before a shift starts.",
-      tags: ["Socket.io", "Razorpay", "MongoDB"],
+      title: "Multi-Business AI Reporting Assistant",
+      description: "WhatsApp BI agent spanning parcel logistics and fuel-station data — cron SQL digests with no LLM, plus a LangGraph lane that only calls whitelisted parameterized tools.",
+      tags: ["LangGraph", "SQL", "Baileys"],
       features: [
-        "Region/district regex matching so seekers see jobs near them, not a national dump.",
-        "Socket.io live job status plus Razorpay order create → signature verify on pay.",
+        "Lane A: reviewed SQL → reconcile validation → PDF/Excel via Baileys (figures never from LLM).",
+        "Lane B: layout JSON editable; every stated number must come back from a SQL tool.",
       ],
-      hostedLink: "https://flexora-wheat.vercel.app/",
-      githubLink: "https://github.com/Viswajith8025/Flexora",
-      image: flexoraImg
-    },
-    {
-      title: "LiveKeralam",
-      subtitle: "Discovery Platform",
-      description: "Kerala heritage discovery with SoulSync scoring — vibe, district, and season weighted into a personal festival blueprint, then live event chat.",
-      tags: ["SoulSync", "Socket.io", "MERN"],
-      features: [
-        "Weighted match engine (vibe keywords, district proximity, season) in SoulSync.",
-        "JWT-auth Socket.io rooms per event plus admin support/event moderation inbox.",
-      ],
-      hostedLink: "https://eventkeralamm.vercel.app/",
-      githubLink: "https://github.com/Viswajith8025/LiveKeralam",
-      image: livekeralamImg
-    },
-    {
-      title: "Civic Eye",
-      subtitle: "Citizen Complaint Reporting",
-      description: "Civic complaint PWA that clusters nearby reports on a map, AI-summarizes cases for staff, and notifies citizens on status and rewards.",
-      tags: ["MongoDB Geo", "OpenAI", "PWA"],
-      features: [
-        "Mongo `$near` geo queries (Haversine fallback) so nearby complaints cluster on Leaflet.",
-        "OpenAI municipal summaries with rule-based fallback when no API key is set.",
-      ],
-      hostedLink: "#",
-      githubLink: "https://github.com/Viswajith8025/CivicEye",
-      image: civiceyeImg
-    },
-    {
-      title: "Janani",
-      subtitle: "Wellness Experience",
-      description: "Wayanad Ayurveda retreat with real booking refs and Razorpay checkout — not a brochure-only site.",
-      tags: ["Razorpay", "Supabase", "React"],
-      features: [
-        "`JAN-` booking references into Supabase with Razorpay order create + signature verify.",
-        "Rate-limited booking/auth routes and Zod-validated payment schemas.",
-      ],
-      hostedLink: "https://jananilifestyle.in",
-      githubLink: "#",
-      image: jananiImg
-    },
-    {
-      title: "IT Services ERP SaaS",
-      subtitle: "Enterprise Business Management Platform",
-      description: "Agency ERP that syncs eSSL biometric punches over SOAP and keeps writes race-safe with optimistic concurrency — plus GST billing.",
-      tags: ["eSSL SOAP", "Supabase", "OCC"],
-      features: [
-        "Local sync agent pulls `GetTransactionsLog` from eSSL devices into attendance.",
-        "Version-column OCC + immutable audit logs so concurrent edits don’t silently clobber.",
-      ],
-      hostedLink: "#",
+      hostedLink: null,
       githubLink: null,
-      image: crmImg
+      image: reportAgentImg,
+      imageLayout: "mobile",
+      disableLightbox: true,
     },
     {
-      title: "Arsenal Fitness",
-      subtitle: "Premium Fitness Platform",
-      description: "Gym brand site with an on-page AI coach scoped to gym knowledge, and join leads delivered over Telegram.",
-      tags: ["Groq", "Telegram", "React"],
+      title: "Field Sales & Operations Platform",
+      description: "Field-sales stack where visits must start within 50 m of the shop, GPS trails ride the open sale cycle, and offline negotiate/complete share one session id.",
+      tags: ["Flutter", "GPS FGS", "Supabase"],
       features: [
-        "Kiran coach: Groq → OpenAI → Gemini provider fallback over a fixed gym knowledge base.",
-        "Serverless join API posts leads to Telegram when the bot token is configured.",
+        "VisitVerification gates (50 m start / 30 m accuracy) with fraud flags on the session.",
+        "Android foreground location bounded to the sale cycle; offline GPS queue keeps timestamps.",
       ],
-      hostedLink: "https://www.arsenalfitness.in/",
-      githubLink: "https://github.com/Viswajith8025/ArsenalFitness",
-      image: arsenalImg
+      hostedLink: null,
+      githubLink: null,
+      image: opsvisorImg,
+    },
+    {
+      title: "Fuel Station Management System",
+      description: "Station OS with on-device face anti-spoof for shift open/close, live BOS pump sync, and a digest-only WhatsApp bridge.",
+      tags: ["ONNX Face", "BOS Sync", "PWA"],
+      features: [
+        "YuNet detect + SFace embed + MiniFASNet anti-spoof — scores only, no face DB on the bunk PC.",
+        "Punch-gated shift sessions plus 20+ BOS payload kinds upserted into Supabase.",
+      ],
+      hostedLink: null,
+      githubLink: null,
+      image: kpnFuelImg,
+    },
+    {
+      title: "Offline-First Textile Factory Management System",
+      description: "LAN-only textile factory PWA — phones work offline; the factory PC (SQLite WAL) is the only source of truth over Tailscale.",
+      tags: ["Offline sync", "SQLite", "Paise"],
+      features: [
+        "Idempotent `sync_ops` with applied / conflict / held recovery on the outbox.",
+        "Money and qty as integers (paise, cm, mg); two factories with outside-role lockdown.",
+      ],
+      hostedLink: null,
+      githubLink: null,
+      image: factoryAppImg,
     },
     {
       title: "Resort Attendance & Housekeeping Ops",
@@ -146,6 +119,31 @@ const Projects = () => {
       hostedLink: null,
       githubLink: null,
       image: sevenHorsesImg,
+    },
+    {
+      title: "Corporate Sales Pipeline",
+      description: "B2B sales kanban with MD approval gates and renewal periods — illegal stage drags are blocked in the UI and RLS.",
+      tags: ["MD gates", "Kanban", "Supabase"],
+      features: [
+        "Pipeline → pending_md → converted/renewal/lost, including MD counter/renegotiate.",
+        "Mandatory next-step on board moves; salesperson portal vs admin approval strip.",
+      ],
+      hostedLink: null,
+      githubLink: null,
+      image: salesPipelineImg,
+    },
+    {
+      title: "IT Services ERP SaaS",
+      subtitle: "Enterprise Business Management Platform",
+      description: "Agency ERP that syncs eSSL biometric punches over SOAP and keeps writes race-safe with optimistic concurrency — plus GST billing.",
+      tags: ["eSSL SOAP", "Supabase", "OCC"],
+      features: [
+        "Local sync agent pulls `GetTransactionsLog` from eSSL devices into attendance.",
+        "Version-column OCC + immutable audit logs so concurrent edits don’t silently clobber.",
+      ],
+      hostedLink: "#",
+      githubLink: null,
+      image: crmImg
     },
     {
       title: "Campus Task Accountability",
@@ -184,66 +182,69 @@ const Projects = () => {
       image: viswalletImg,
     },
     {
-      title: "Multi-Business AI Reporting Assistant",
-      description: "WhatsApp BI agent spanning parcel logistics and fuel-station data — cron SQL digests with no LLM, plus a LangGraph lane that only calls whitelisted parameterized tools.",
-      tags: ["LangGraph", "SQL", "Baileys"],
+      title: "Flexora",
+      subtitle: "One-Day Job Platform",
+      description: "Same-day local staffing marketplace where district-aware job matching meets live Socket.io status and Razorpay checkout before a shift starts.",
+      tags: ["Socket.io", "Razorpay", "MongoDB"],
       features: [
-        "Lane A: reviewed SQL → reconcile validation → PDF/Excel via Baileys (figures never from LLM).",
-        "Lane B: layout JSON editable; every stated number must come back from a SQL tool.",
+        "Region/district regex matching so seekers see jobs near them, not a national dump.",
+        "Socket.io live job status plus Razorpay order create → signature verify on pay.",
       ],
-      hostedLink: null,
-      githubLink: null,
-      image: reportAgentImg,
-      imageLayout: "mobile",
-      disableLightbox: true,
+      hostedLink: "https://flexora-wheat.vercel.app/",
+      githubLink: "https://github.com/Viswajith8025/Flexora",
+      image: flexoraImg
     },
     {
-      title: "Corporate Sales Pipeline",
-      description: "B2B sales kanban with MD approval gates and renewal periods — illegal stage drags are blocked in the UI and RLS.",
-      tags: ["MD gates", "Kanban", "Supabase"],
+      title: "Civic Eye",
+      subtitle: "Citizen Complaint Reporting",
+      description: "Civic complaint PWA that clusters nearby reports on a map, AI-summarizes cases for staff, and notifies citizens on status and rewards.",
+      tags: ["MongoDB Geo", "OpenAI", "PWA"],
       features: [
-        "Pipeline → pending_md → converted/renewal/lost, including MD counter/renegotiate.",
-        "Mandatory next-step on board moves; salesperson portal vs admin approval strip.",
+        "Mongo `$near` geo queries (Haversine fallback) so nearby complaints cluster on Leaflet.",
+        "OpenAI municipal summaries with rule-based fallback when no API key is set.",
       ],
-      hostedLink: null,
-      githubLink: null,
-      image: salesPipelineImg,
+      hostedLink: "#",
+      githubLink: "https://github.com/Viswajith8025/CivicEye",
+      image: civiceyeImg
     },
     {
-      title: "Fuel Station Management System",
-      description: "Station OS with on-device face anti-spoof for shift open/close, live BOS pump sync, and a digest-only WhatsApp bridge.",
-      tags: ["ONNX Face", "BOS Sync", "PWA"],
+      title: "LiveKeralam",
+      subtitle: "Discovery Platform",
+      description: "Kerala heritage discovery with SoulSync scoring — vibe, district, and season weighted into a personal festival blueprint, then live event chat.",
+      tags: ["SoulSync", "Socket.io", "MERN"],
       features: [
-        "YuNet detect + SFace embed + MiniFASNet anti-spoof — scores only, no face DB on the bunk PC.",
-        "Punch-gated shift sessions plus 20+ BOS payload kinds upserted into Supabase.",
+        "Weighted match engine (vibe keywords, district proximity, season) in SoulSync.",
+        "JWT-auth Socket.io rooms per event plus admin support/event moderation inbox.",
       ],
-      hostedLink: null,
-      githubLink: null,
-      image: kpnFuelImg,
+      hostedLink: "https://eventkeralamm.vercel.app/",
+      githubLink: "https://github.com/Viswajith8025/LiveKeralam",
+      image: livekeralamImg
     },
     {
-      title: "Field Sales & Operations Platform",
-      description: "Field-sales stack where visits must start within 50 m of the shop, GPS trails ride the open sale cycle, and offline negotiate/complete share one session id.",
-      tags: ["Flutter", "GPS FGS", "Supabase"],
+      title: "Arsenal Fitness",
+      subtitle: "Premium Fitness Platform",
+      description: "Gym brand site with an on-page AI coach scoped to gym knowledge, and join leads delivered over Telegram.",
+      tags: ["Groq", "Telegram", "React"],
       features: [
-        "VisitVerification gates (50 m start / 30 m accuracy) with fraud flags on the session.",
-        "Android foreground location bounded to the sale cycle; offline GPS queue keeps timestamps.",
+        "Kiran coach: Groq → OpenAI → Gemini provider fallback over a fixed gym knowledge base.",
+        "Serverless join API posts leads to Telegram when the bot token is configured.",
       ],
-      hostedLink: null,
-      githubLink: null,
-      image: opsvisorImg,
+      hostedLink: "https://www.arsenalfitness.in/",
+      githubLink: "https://github.com/Viswajith8025/ArsenalFitness",
+      image: arsenalImg
     },
     {
-      title: "Offline-First Textile Factory Management System",
-      description: "LAN-only textile factory PWA — phones work offline; the factory PC (SQLite WAL) is the only source of truth over Tailscale.",
-      tags: ["Offline sync", "SQLite", "Paise"],
+      title: "Janani",
+      subtitle: "Wellness Experience",
+      description: "Wayanad Ayurveda retreat with real booking refs and Razorpay checkout — not a brochure-only site.",
+      tags: ["Razorpay", "Supabase", "React"],
       features: [
-        "Idempotent `sync_ops` with applied / conflict / held recovery on the outbox.",
-        "Money and qty as integers (paise, cm, mg); two factories with outside-role lockdown.",
+        "`JAN-` booking references into Supabase with Razorpay order create + signature verify.",
+        "Rate-limited booking/auth routes and Zod-validated payment schemas.",
       ],
-      hostedLink: null,
-      githubLink: null,
-      image: factoryAppImg,
+      hostedLink: "https://jananilifestyle.in",
+      githubLink: "#",
+      image: jananiImg
     },
   ];
 
