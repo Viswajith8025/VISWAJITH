@@ -16,10 +16,11 @@ import flexoraImg from '../assets/flexora.png';
 import civiceyeImg from '../assets/civiceye.png';
 import crmImg from '../assets/CRM.png';
 import rozanaImg from '../assets/rozanaretreats.png';
-import lendflowImg from '../assets/lendflow.png';
+import sevenHorsesImg from '../assets/7horses.jpeg';
 import kmctTasksImg from '../assets/kmcttasks.png';
 import viswalletImg from '../assets/viswallet.png';
 import vaultErImg from '../assets/vault-er.png';
+import opsvisorImg from '../assets/opsvisor.jpeg';
 const Projects = () => {
   const projectList = [
     {
@@ -122,7 +123,7 @@ const Projects = () => {
       ],
       hostedLink: null,
       githubLink: null,
-      image: lendflowImg,
+      image: sevenHorsesImg,
     },
     {
       title: "KMCT Tasks",
@@ -206,7 +207,7 @@ const Projects = () => {
       ],
       hostedLink: null,
       githubLink: null,
-      image: null,
+      image: opsvisorImg,
     },
     {
       title: "Siddhant Fashion",
