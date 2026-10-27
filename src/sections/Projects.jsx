@@ -21,6 +21,7 @@ import kmctTasksImg from '../assets/kmcttasks.png';
 import viswalletImg from '../assets/viswallet.png';
 import vaultErImg from '../assets/vault-er.png';
 import opsvisorImg from '../assets/opsvisor.jpeg';
+import kpnFuelImg from '../assets/kpnfuel.jpeg';
 const Projects = () => {
   const projectList = [
     {
@@ -195,7 +196,7 @@ const Projects = () => {
       ],
       hostedLink: null,
       githubLink: null,
-      image: null,
+      image: kpnFuelImg,
     },
     {
       title: "OpsVisor",
