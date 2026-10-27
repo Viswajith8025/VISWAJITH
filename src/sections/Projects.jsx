@@ -77,8 +77,8 @@ const Projects = () => {
       image: jananiImg
     },
     {
-      title: "Enterprise CRM",
-      subtitle: "Sales & Lead Management System",
+      title: "IT Services ERP SaaS",
+      subtitle: "Enterprise Business Management Platform",
       description: "Agency ERP that syncs eSSL biometric punches over SOAP and keeps writes race-safe with optimistic concurrency — plus GST billing.",
       tags: ["eSSL SOAP", "Supabase", "OCC"],
       features: [
@@ -103,8 +103,8 @@ const Projects = () => {
       image: arsenalImg
     },
     {
-      title: "Rozana Retreats",
-      description: "Two-resort ops OS where staff punch with AWS Rekognition face match, housekeeping needs photo proof, and owners get Baileys EOD WhatsApp digests.",
+      title: "Resort Attendance & Housekeeping Ops",
+      description: "Multi-property resort ops app where staff punch with AWS Rekognition face match, housekeeping needs photo proof, and owners get Baileys EOD WhatsApp digests.",
       tags: ["Rekognition", "Supabase", "Baileys"],
       features: [
         "Face punch at ~95% match threshold with duplicate-face collapse across enrolments.",
@@ -115,8 +115,8 @@ const Projects = () => {
       image: rozanaImg,
     },
     {
-      title: "7 Horses",
-      description: "Tamil Nadu microfinance OS — paise-exact loan schedules, field cash routes with once-only handover, and bilingual EN/Tamil desks.",
+      title: "Lending & Loan Operations Platform",
+      description: "Multi-role lending OS — paise-exact loan schedules, field cash routes with once-only handover, and bilingual EN/Tamil desks.",
       tags: ["Loan engine", "Supabase", "i18n"],
       features: [
         "Installment math in paise with IST day boundaries — Recovery/Advance derived from schedule state.",
@@ -127,8 +127,8 @@ const Projects = () => {
       image: sevenHorsesImg,
     },
     {
-      title: "KMCT Tasks",
-      description: "Accountability module inside KMCT Nucleus — assignment hierarchy is enforced in Postgres, not just the UI, across college roles.",
+      title: "Campus Task Accountability",
+      description: "Accountability module for a multi-college group — assignment hierarchy is enforced in Postgres, not just the UI, across campus roles.",
       tags: ["Supabase", "RLS", "React"],
       features: [
         "DB + workflow forbid coordinators assigning “up”; owners can assign across colleges.",
@@ -163,8 +163,8 @@ const Projects = () => {
       image: viswalletImg,
     },
     {
-      title: "KPN Reports Agent",
-      description: "WhatsApp BI agent for 200+ branches — cron SQL digests with no LLM, plus a LangGraph lane that only calls whitelisted parameterized tools.",
+      title: "Multi-Business AI Reporting Assistant",
+      description: "WhatsApp BI agent spanning parcel logistics and fuel-station data — cron SQL digests with no LLM, plus a LangGraph lane that only calls whitelisted parameterized tools.",
       tags: ["LangGraph", "SQL", "Baileys"],
       features: [
         "Lane A: reviewed SQL → reconcile validation → PDF/Excel via Baileys (figures never from LLM).",
@@ -175,8 +175,8 @@ const Projects = () => {
       image: null,
     },
     {
-      title: "KPN Sales Pipeline",
-      description: "Parcel-software sales kanban with MD approval gates and renewal periods — illegal stage drags are blocked in the UI and RLS.",
+      title: "Corporate Sales Pipeline",
+      description: "B2B sales kanban with MD approval gates and renewal periods — illegal stage drags are blocked in the UI and RLS.",
       tags: ["MD gates", "Kanban", "Supabase"],
       features: [
         "Pipeline → pending_md → converted/renewal/lost, including MD counter/renegotiate.",
@@ -187,7 +187,7 @@ const Projects = () => {
       image: null,
     },
     {
-      title: "KPN Fuel",
+      title: "Fuel Station Management System",
       description: "Station OS with on-device face anti-spoof for shift open/close, live BOS pump sync, and a digest-only WhatsApp bridge.",
       tags: ["ONNX Face", "BOS Sync", "PWA"],
       features: [
@@ -199,7 +199,7 @@ const Projects = () => {
       image: kpnFuelImg,
     },
     {
-      title: "OpsVisor",
+      title: "Field Sales & Operations Platform",
       description: "Field-sales stack where visits must start within 50 m of the shop, GPS trails ride the open sale cycle, and offline negotiate/complete share one session id.",
       tags: ["Flutter", "GPS FGS", "Supabase"],
       features: [
@@ -211,7 +211,7 @@ const Projects = () => {
       image: opsvisorImg,
     },
     {
-      title: "Siddhant Fashion",
+      title: "Offline-First Textile Factory Management System",
       description: "LAN-only textile factory PWA — phones work offline; the factory PC (SQLite WAL) is the only source of truth over Tailscale.",
       tags: ["Offline sync", "SQLite", "Paise"],
       features: [
